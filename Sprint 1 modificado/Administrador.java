@@ -12,6 +12,12 @@ public class Administrador extends Usuario{
         this.empresas = new ArrayList<>();
         this.empresaAdheridas = new ArrayList<>();
     }
+  
+        public String getClave() {
+        return this.clave();
+    }
+  
+
     public void login(String nombre, int dni, String clave){
         //if((super.getNombre().equals(nombre)) && (this.clave.equals(clave)) && (super.getDni() ==dni)) {
             //loguear
@@ -19,7 +25,8 @@ public class Administrador extends Usuario{
         //else{}
         //nologuear
 
-    public String getClave() {
-        return this.clave();
-    }
+
+
+
+  
 }

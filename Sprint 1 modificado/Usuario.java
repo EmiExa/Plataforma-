@@ -7,9 +7,13 @@ public abstract class Usuario {
         apellido = ap;
         this.dni = dni;
     }
-    public abstract void login(String nombre, int dni, String clave);
-
     public String getNombre() {
         return nombre;
+    }
+    public String getApellido(){
+        return apellido;
+    }
+    public int getDni(){
+        return dni;
     }
 }
