@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class EmpresaAdherida extends Empresa{
-    public Double descuento;
-    public int horasRestantes;
-    public int lugaresDisponibles;
+    private Double descuento;
+    private int horasRestantes;
+    private int lugaresDisponibles;
     public EmpresaAdherida(String nombre, Double desc, int horas, int lugares){
         super(nombre);
         descuento = desc;
