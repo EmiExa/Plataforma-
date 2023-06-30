@@ -12,6 +12,12 @@ public class Administrador extends Usuario{
         this.empresas = new ArrayList<>();
         this.empresaAdheridas = new ArrayList<>();
     }
+
+    public void getUsuarios(){
+        ArrayList<Usuario> usuario = new ArrayList<>();
+        usuario.addAll(usuarios);
+        return usuario;
+    }
   
         public String getClave() {
         return this.clave();
@@ -28,5 +34,4 @@ public class Administrador extends Usuario{
 
 
 
-  
 }
