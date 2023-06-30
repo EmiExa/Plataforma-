@@ -12,9 +12,26 @@ public class Administrador extends Usuario{
         this.empresas = new ArrayList<>();
         this.empresaAdheridas = new ArrayList<>();
     }
+
     public void getUsuarios(){
         ArrayList<Usuario> usuario = new ArrayList<>();
         usuario.addAll(usuarios);
         return usuario;
     }
+  
+        public String getClave() {
+        return this.clave();
+    }
+  
+
+    public void login(String nombre, int dni, String clave){
+        //if((super.getNombre().equals(nombre)) && (this.clave.equals(clave)) && (super.getDni() ==dni)) {
+            //loguear
+        }
+        //else{}
+        //nologuear
+
+
+
+
 }
