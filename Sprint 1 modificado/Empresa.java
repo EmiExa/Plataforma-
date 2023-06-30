@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class Empresa {
+public class Empresa {
     private String nombre;
     private ArrayList<Colectivo> colectivos;
     protected ArrayList<Viaje> viajesFuturos;

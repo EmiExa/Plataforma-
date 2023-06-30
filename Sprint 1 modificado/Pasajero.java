@@ -1,5 +1,5 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Pasajero extends Usuario{
     private Tarjeta tarjeta;
@@ -7,19 +7,23 @@ public class Pasajero extends Usuario{
     private String clave;
     private ArrayList<Suscripcion> suscripciones;
     private ArrayList<Pasaje> historialPasajes;
-    public Pasajero(String nombre, String apellido, int dni,Tarjeta tarjeta, String email){
-        super(nombre,apellido,dni);
+
+    public Pasajero(String nombre, String apellido, int dni,Tarjeta tarjeta, String email, String clave){
+        this(nombre,apellido,dni,email,clave);
         this.tarjeta = tarjeta;
+        }
+    public Pasajero(String nombre, String apellido, int dni, String email, String clave){
+        super(nombre,apellido,dni);
         this.email = email;
-        this.setClave();
+        this.clave = clave;
         suscripciones = new ArrayList<>();
         historialPasajes = new ArrayList<Pasaje>();
     }
-    private void setClave(){
-        //generar la clave con sus condiciones
+    public void agregarTarjeta(Tarjeta tarjeta) {
+        this.tarjeta = tarjeta;
     }
-    public void login(String nombre, int dni, String clave){
-        //ingresar dni nombre y clave y chequea en una base de datos
+    private void cambiarClave(String contraseña){
+        //generar la clave con sus condiciones
     }
     public void suscribirseViaje(String origen, String destino){
         Suscripcion s = new Suscripcion(origen,destino);
@@ -32,9 +36,7 @@ public class Pasajero extends Usuario{
     public boolean suscrito(Suscripcion s){
         return suscripciones.contains(s);
     }
-    //public Viaje buscarPasaje(LocalDate dia, String origen, String destino){
-        //muestra los viajes correspondientes y el usuario selecciona uno
-    //}
+
     //public Arraylist<Pasaje> comprarPasaje(Viaje Viaje, int numeroPasajes){
         //consulta si ese viaje tiene los asientos disponibles etc...
         //realiza la transaccion autocompletado etc...
@@ -43,5 +45,7 @@ public class Pasajero extends Usuario{
         //se fija si en el historial se repite el viaje mas de 3 veces
         //Si no tiene una suscripcion a ese viaje(origen destino) se le notifica que se puede suscribir al viaje improvisado
     //}
-
+    public String getClave(){
+        return clave;
+    }
 }
