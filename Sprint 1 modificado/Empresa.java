@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Empresa {
@@ -16,14 +18,11 @@ public class Empresa {
         return viajesFuturos;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
     public ArrayList<Viaje>  buscarPasajes(LocalDate dia, String origen, String destino){
         ArrayList<Viaje> salida = new ArrayList<>();
         for(int i =0; i< viajesFuturos.size();i++){
             Viaje viajeactual= viajesFuturos.get(i);
-            if ((viajeactual.getOrigen()== origen) && (viajeactual.getDestino() == destino) && (dia.isEqual(viajeactual.getFechaSalida().toLocalDate())) {
+            if ((viajeactual.getOrigen()== origen) && (viajeactual.getDestino() == destino) && (dia.isEqual(viajeactual.getFechaSalida().toLocalDate())) && (viajeactual.getCantAsientosDisponibles() > 0)) {
                 salida.add(viajeactual);
             }
         }
@@ -33,5 +32,8 @@ public class Empresa {
         else {
             return null;
         }
+    }
+    public String getNombre() {
+        return nombre;
     }
 }
