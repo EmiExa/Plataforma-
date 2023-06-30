@@ -46,7 +46,7 @@ public class Viaje {
         return cantAsientosDisponibles;
     }
 
-    public LocalDate getFechaSalida() {
+    public LocalDateTime getFechaSalida() {
         return fechaSalida;
     }
 
@@ -66,7 +66,7 @@ public class Viaje {
         this.cantAsientosDisponibles = cantAsientosDisponibles;
     }
 
-    public void setFechaSalida(LocalDate fechaSalida) {
+    public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
