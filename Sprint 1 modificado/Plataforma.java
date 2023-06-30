@@ -59,11 +59,15 @@ public class Plataforma {
         System.out.println("Te has registrado con exito!!");
         this.addPasajero(p);
     }
-    public Viaje buscarPasaje(int dia, String origen, String destino) {
-
-
-
-        return null;
+    public ArrayList<Viaje> buscarPasaje(LocalDate dia, String origen, String destino) {
+        ArrayList<Viaje> salida= new ArrayList<>();
+        for (int i = 0; i < empresas.size(); i++) {
+            ArrayList<Viaje> viajes = empresas.get(i).buscarPasajes(dia,origen,destino);
+            if (viajes != null){
+                salida.addAll(viajes);
+            }
+        }
+        return salida;
     }
 
 
