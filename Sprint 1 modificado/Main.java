@@ -2,6 +2,58 @@ import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.time.LocalDate;
 public class Main {
+
+    public void mostrarMenuPlataforma (Pasajero p){
+        int opcion = 0;
+        while(opcion != 4){
+            System.out.println("MENU: ");
+            System.out.println("1.Buscar pasajes" + "\n 2.Suscribirse a ratreo" + "\n 3.Suscribirse a viaje improvisado" + "\n 4.Salir");
+            Scanner s = new Scanner(System.in);
+            System.out.println("Ingrese el numero de opcion que desea realizar");
+            opcion = s.nextInt();
+            s.nextLine();
+            if(opcion == 1){
+                //Buscar pasajes
+                Arraylist<Viaje> resultadoBusqueda = nueve.buscarPasajes();
+                System.out.println("Desea comprar un pasaje? 1.SI 2.NO");
+                int realizaCompra = s.nextInt();
+                if (realizaCompra == 1){
+                    System.out.println("Seleccione el numero de viaje que desea comprar:");
+                    int op = s.nextInt();
+                    if ((op > 0) && (op < resultadoBusqueda.size())){
+                        nueve.generarCompra(resultadoBusqueda.get(op), p);
+                    }
+                }
+            }
+        }
+    }
+    
+    public void MostrarMenuIngresar (){
+        int opcion = 0;
+        while (opcion != 3){
+            System.out.println("INICIO: ");
+            System.out.println("1.Loguearse" + "\n 2.Registrarse" + "\n 3.Salir");
+            System.out.println("Ingrese la opcion que desea realizar:");
+            Scanner s = new Scanner(System.in);
+            opcion = s.nextInt();
+            s.nextLine();
+            if (opcion == 1){
+                //Loguearse
+                Pasajero p = nueve.login();
+                if (p != null)
+                    mostrarMenuPlataforma(p);
+                else{
+                    System.out.println("Su usuario no fue encontrado");
+                }          
+            } else if (opcion == 2){
+                //Registrarse
+                Pasajero p = nueve.registro();
+            } else if (opcion != 3){
+                System.out.println("La opcion ingresada no es correcta, vuelva a intentar");
+            }
+        }
+    }
+    
     public static void main(String[] args) {
         Banco banco = new Banco("santander");
         Plataforma nueve = new Plataforma(banco);
