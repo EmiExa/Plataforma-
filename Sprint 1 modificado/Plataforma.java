@@ -59,7 +59,19 @@ public class Plataforma {
         System.out.println("Te has registrado con exito!!");
         this.addPasajero(p);
     }
-    public ArrayList<Viaje> buscarPasaje(LocalDate dia, String origen, String destino) {
+   public ArrayList<Viaje> buscarPasaje(LocalDate dia) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Ingresar origen: ");
+        String origen = s.nextLine();
+        System.out.println("Ingresar destino: ");
+        String destino = s.nextLine();
+        System.out.println("Ingresar Fecha: ");
+        //convert String to LocalDate
+        String dateString= s.nextLine();
+        DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("d/MM/yyyy");
+        
+        LocalDate localDate = LocalDate.parse(dateString, formatter);
+
         ArrayList<Viaje> salida= new ArrayList<>();
         for (int i = 0; i < empresas.size(); i++) {
             ArrayList<Viaje> viajes = empresas.get(i).buscarPasajes(dia,origen,destino);
@@ -67,7 +79,14 @@ public class Plataforma {
                 salida.addAll(viajes);
             }
         }
+        listarServicios(salida);
         return salida;
+    }
+    public void listarServicios(ArrayList<Viaje> salida){
+        for (int i = 0; i < salida.size(); i++) {
+            Viaje actual = salida.get(i);
+            System.out.println(i+")"+"Origen: "+actual.getOrigen()+","+"Destino:"+actual.getDestino()+","+ "Fecha: "+ actual.getFechaSalida()+"\n");
+        }
     }
 
 
