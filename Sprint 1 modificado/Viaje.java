@@ -7,7 +7,6 @@ public class Viaje {
     private int cantAsientosDisponibles;
     private Colectivo colectivo;
     private LocalDate fechaSalida;
-    private int horasRestantes;
     private ArrayList<Pasaje> pasajesVendidos;
     private Double monto;
 
@@ -21,8 +20,9 @@ public class Viaje {
         this.horasRestantes = horasRestantes;
         this.pasajesVendidos = new ArrayList<Pasaje>();
     }
-    public boolean esImprovisado( int horas, int lugares){
-        if((horasRestantes <= horas) && (cantAsientosDisponibles <= lugares))
+    public boolean esImprovisado(int horas, int lugares){
+        long horasRestantes = (LocalDate.now()).until(this.fechaSalida)).get(ChronoUnit.HOURS);
+        if (((int)horasRestantes <= horas) && (cantAsientosDisponibles <= lugares))
             return true;
         else
             return false;
