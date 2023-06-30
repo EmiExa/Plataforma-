@@ -18,4 +18,8 @@ public class Administrador extends Usuario{
         }
         //else{}
         //nologuear
+
+    public String getClave() {
+        return this.clave();
+    }
 }
