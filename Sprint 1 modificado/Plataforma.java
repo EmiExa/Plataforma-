@@ -151,6 +151,7 @@ public class Plataforma {
     private Pasaje generarPasaje() {
         System.out.println("Ingrese su dni: " +"\n");
         int dni = s.nextInt();
+        s.nextLine();
         Pasajero p = this.buscaPasajero(dni);
         if (p == null)
             p = new Pasajero("nombre","apellido",dni,"","");
