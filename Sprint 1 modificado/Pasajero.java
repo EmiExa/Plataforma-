@@ -41,6 +41,16 @@ public class Pasajero extends Usuario{
         return suscripciones.contains(s);
     }
 
+    public int cantViajes(String origen, String destino) {
+        int suma = 0;
+        for (Pasaje p: historialPasajes) {
+            Viaje v = p.getViaje();
+            if (v.getOrigen().equals(origen) && v.getDestino().equals(destino))
+                suma++;
+        }
+        return suma;
+    }
+
     //public Arraylist<Pasaje> comprarPasaje(Viaje Viaje, int numeroPasajes){
         //consulta si ese viaje tiene los asientos disponibles etc...
         //realiza la transaccion autocompletado etc...
