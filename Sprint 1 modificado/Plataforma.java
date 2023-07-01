@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 public class Plataforma {
     private ArrayList<Empresa> empresas;
-    private ArrayList<Administrador> admins;
-    private ArrayList<Pasajero> pasajeros;
+    private ArrayList<Usuario> usuarios;
     private Banco bancoAsociado;
     private ArrayList<EmpresaAdherida> empresasConvenio;
 
@@ -23,11 +22,11 @@ public class Plataforma {
         bancoAsociado = banco;
     }
 
-    public Pasajero login(int dni, String clave) {
-        for (int i = 0; i < pasajeros.size(); i++) {
-            Pasajero p = pasajeros.get(i);
-            if ((p.getDni() == dni) && (p.getClave() == clave)) {
-                return p;
+    public Usuario login(int dni, String clave) {
+        for (int i = 0; i < usuarios.size(); i++) {
+            Usuario u = usuarios.get(i);
+            if ((u.getDni() == dni) && (u.getClave() == clave)) {
+                return u;
             }
         }
         return null;
@@ -97,10 +96,10 @@ public class Plataforma {
 
 
     public void addPasajero(Pasajero p){
-        pasajeros.add(p);
+        usuarios.add(p);
     }
     public void addAdmin(Administrador a){
-        admins.add(a);
+        usuarios.add(a);
     }
     public void addEmpresa(Empresa emp){
         empresas.add(emp);
@@ -126,8 +125,8 @@ public class Plataforma {
         for(int i = 0; i< pasajeros.size(); i++){
             for(int j = 0; j<suscripciones.size(); j++) {
                 Suscripcion suscripcion = suscripciones.get(j);
-                if (pasajeros.get(i).suscrito(suscripcion))
-                    this.notificarPasajero(pasajeros.get(i), suscripcion);
+                if (usuarios.get(i).suscrito(suscripcion))
+                    this.notificarPasajero(usuarios.get(i), suscripcion);
             }
         }
     }
