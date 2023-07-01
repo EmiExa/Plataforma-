@@ -145,8 +145,11 @@ public class Plataforma {
         int dni = s.nextInt();
         Pasajero p = this.buscaPasajero(dni);
         if (p != null){
-            Pasaje pasaje = new Pasaje(p,)
+            Pasaje pasaje = new Pasaje(p,viaje,0,viaje.getMonto());
             registro();
+        } else {
+            // solicitar nombre y apellido del pasajero no registrado
+            p = new Pasajero(dni,"nombre","apellido")
         }
     }
     
@@ -157,7 +160,7 @@ public class Plataforma {
         if (viaje.tieneDisponibilidad(cantidad)) {
             ArrayList<Pasaje> pasajes = new ArrayList<>();
             for (int i = 0; i < cantidad; i++)
-                pasajes.add(generarPasaje());
+                pasajes.add(generarPasaje(viaje));
             viaje.setCantAsientosDisponibles(cantidad);
             pasajero1.addPasajes(pasajes);
         }
