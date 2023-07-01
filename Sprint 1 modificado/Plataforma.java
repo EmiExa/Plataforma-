@@ -144,7 +144,7 @@ public class Plataforma {
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar origen: ");
         int cantidad = s.nextInt();
-        if (viajes.getCantAsientosDisponibles() >= cantidad){
+        if (viajes.ti>= cantidad){
             for (int i = 0; i < cantidad; i++) {
                 System.out.println("Ingrese su dni: " +"\n");
                 int dni = s.nextInt();
