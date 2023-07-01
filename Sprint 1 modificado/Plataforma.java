@@ -140,20 +140,26 @@ public class Plataforma {
     public void notificarPasajero(Pasajero p, Suscripcion s){
         System.out.println("Te avisamos "+p.getNombre()+ " que el viaje que va de "+s.getOrigen()+" a "+s.getDestino()+" Esta con un descuento por viaje improvisado");
     }
+
+    private Pasaje generarPasaje() {
+        System.out.println("Ingrese su dni: " +"\n");
+        int dni = s.nextInt();
+        Pasajero p = this.buscaPasajero(dni);
+        if (p == null){
+            registro();
+        }
+    }
+    
     public void generarCompra(Viaje viaje, Pasajero pasajero1){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar origen: ");
         int cantidad = s.nextInt();
-        if (viaje.tieneDisponibilidad(cantidad)){
-            for (int i = 0; i < cantidad; i++) {
-                System.out.println("Ingrese su dni: " +"\n");
-                int dni = s.nextInt();
-                Pasajero p = this.buscaPasajero(dni);
-                if (p == null){
-                    registro();
-                }
-            }
+        if (viaje.tieneDisponibilidad(cantidad)) {
+            ArrayList<Pasaje> pasajes = new ArrayList<>();
+            for (int i = 0; i < cantidad; i++)
+                pasajes.add(generarPasaje());
             viaje.setCantAsientosDisponibles(cantidad);
+            pasajero1.addPasajes(pasajes);
         }
         if(pasajero1.getTarjeta() != null) {
 
