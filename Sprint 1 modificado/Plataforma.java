@@ -144,13 +144,10 @@ public class Plataforma {
         System.out.println("Ingrese su dni: " +"\n");
         int dni = s.nextInt();
         Pasajero p = this.buscaPasajero(dni);
-        if (p != null){
-            Pasaje pasaje = new Pasaje(p,viaje,0,viaje.getMonto());
-            registro();
-        } else {
-            // solicitar nombre y apellido del pasajero no registrado
-            p = new Pasajero(dni,"nombre","apellido")
-        }
+        if (p == null)
+            p = new Pasajero("nombre","apellido",dni,"","");
+        Pasaje pasaje = new Pasaje(p,viaje,0,viaje.getMonto());
+        return pasaje;
     }
     
     public void generarCompra(Viaje viaje, Pasajero pasajero1){
