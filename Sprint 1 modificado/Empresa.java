@@ -36,4 +36,8 @@ public class Empresa {
     public String getNombre() {
         return nombre;
     }
+
+    public int getCantColectivos(){
+        return colectivos.size();
+    }
 }
