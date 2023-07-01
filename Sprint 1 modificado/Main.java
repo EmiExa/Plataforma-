@@ -5,7 +5,7 @@ public class Main {
 
     public void mostrarMenuPlataforma (Pasajero p){
         int opcion = 0;
-        while(opcion !=54){
+        while(opcion != 5){
             System.out.println("MENU: ");
             System.out.println("1.Buscar pasajes" + "\n 2.Suscribirse a rastreo" + "\n 3.Suscribirse a viaje improvisado" +"\n 4.Cancelar compra" + "\n 5.Salir");
             Scanner s = new Scanner(System.in);
@@ -16,6 +16,7 @@ public class Main {
                 case 1:
                     //Buscar pasajes
                     Arraylist<Viaje> resultadoBusqueda = nueve.buscarPasajes();
+                    //Elegir asiento
                     System.out.println("Desea comprar un pasaje? 1.SI 2.NO");
                     int realizaCompra = s.nextInt();
                     if (realizaCompra == 1){
