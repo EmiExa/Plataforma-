@@ -22,7 +22,7 @@ public class Empresa {
         ArrayList<Viaje> salida = new ArrayList<>();
         for(int i =0; i< viajesFuturos.size();i++){
             Viaje viajeactual= viajesFuturos.get(i);
-            if ((viajeactual.getOrigen().equals(origen)) && (viajeactual.getDestino().equals(destino)) && (dia.isEqual(viajeactual.getFechaSalida().toLocalDate())) && (viajeactual.getCantAsientosDisponibles() > 0)) {
+            if ((viajeactual.getOrigen().equals(origen)) && (viajeactual.getDestino().equals(destino)) && (dia.isEqual(viajeactual.getFechaSalida().toLocalDate())) && (viajeactual.tieneDisponibilidad())) {
                 salida.add(viajeactual);
             }
         }
