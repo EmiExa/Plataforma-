@@ -167,7 +167,7 @@ public class Plataforma {
             System.out.println(" Notamos que realiza este viaje con frecuencia.\n¿Desea suscribirse al servicio de viaje improvisado para esta ruta?");
             System.out.print(" Ingresar 1 (si) o 0 (no): ");
             if (s.nextInt()==1)
-                
+                suscribirViaje(comprador);
         }
     }
     
@@ -186,7 +186,7 @@ public class Plataforma {
             if (pasajero1.getTarjeta() == null)
                 pasajero1.addTarjeta();
             if (bancoAsociado.cobrar(pasajero1.getTarjeta(),viajes.getMonto()*cantidad)) {
-                // Enviar mail de notificiacion
+                // Enviar mail de notificación
                 pasajero1.addPasajes(pasajes);
             }
         }
