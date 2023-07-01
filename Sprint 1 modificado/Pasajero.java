@@ -23,7 +23,8 @@ public class Pasajero extends Usuario{
     public void addPasajes(ArrayList<Pasaje> pasajes) {
         historialPasajes.addAll(pasajes);
     }
-    public void agregarTarjeta(Tarjeta tarjeta) {
+    public void addTarjeta() {
+        System.out.print(" Ingresar número de tarjeta: ");
         this.tarjeta = tarjeta;
     }
     private void cambiarClave(String contraseña){
