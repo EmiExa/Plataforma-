@@ -37,13 +37,13 @@ public class Plataforma {
         }
         return null;
     }
-    
-    public Pasajero buscaPasajero( int dni){
+
+    public Pasajero buscaPasajero(int dni){
+
         for (int i = 0; i < pasajeros.size(); i++) {
             Pasajero p = pasajeros.get(i);
-            if (p.getDni() == dni){
+            if (p.getDni() == dni)
                 return p;
-            }
         }
         return null;
     }
@@ -147,20 +147,27 @@ public class Plataforma {
     public void notificarPasajero(Pasajero p, Suscripcion s){
         System.out.println("Te avisamos "+p.getNombre()+ " que el viaje que va de "+s.getOrigen()+" a "+s.getDestino()+" Esta con un descuento por viaje improvisado");
     }
-    public void generarCompra(Viaje viajes, Pasajero pasajero1){
+
+    private Pasaje generarPasaje() {
+        System.out.println("Ingrese su dni: " +"\n");
+        int dni = s.nextInt();
+        Pasajero p = this.buscaPasajero(dni);
+        if (p == null)
+            p = new Pasajero("nombre","apellido",dni,"","");
+        Pasaje pasaje = new Pasaje(p,viaje,0,viaje.getMonto());
+        return pasaje;
+    }
+    
+    public void generarCompra(Viaje viaje, Pasajero pasajero1){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar origen: ");
         int cantidad = s.nextInt();
-        if (viajes.ti>= cantidad){
-            for (int i = 0; i < cantidad; i++) {
-                System.out.println("Ingrese su dni: " +"\n");
-                int dni = s.nextInt();
-                Pasajero p = this.buscaPasajero(dni);
-                if (p == null){
-                    registro();
-                }
-            }
-            viajes.setCantAsientosDisponibles(cantidad);
+        if (viaje.tieneDisponibilidad(cantidad)) {
+            ArrayList<Pasaje> pasajes = new ArrayList<>();
+            for (int i = 0; i < cantidad; i++)
+                pasajes.add(generarPasaje(viaje));
+            viaje.setCantAsientosDisponibles(cantidad);
+            pasajero1.addPasajes(pasajes);
         }
         if(pasajero1.getTarjeta() != null) {
 

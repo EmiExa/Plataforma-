@@ -28,9 +28,7 @@ public class Viaje {
             return false;
     }
 
-    public boolean tieneDisponibilidad() {
-        return this.cantAsientosDisponibles > 0;
-    }
+
     
     public void addPasajero(Pasaje pas){
         if(cantAsientosDisponibles>0) {
@@ -77,8 +75,13 @@ public class Viaje {
     public void setMonto(Double monto) {
         this.monto = monto;
     }
-    public boolean disponibilidadAsientos(int cantidad){
-        return  (this.cantAsientosDisponibles >= cantidad);
+
+    public boolean tieneDisponibilidad() {
+        return this.cantAsientosDisponibles > 0;
+    }
+    
+    public boolean tieneDisponibilidad(int cantidad){
+        return  this.cantAsientosDisponibles >= cantidad;
     }
 
     public String getInfo() {
