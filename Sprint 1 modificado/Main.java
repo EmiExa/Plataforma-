@@ -7,9 +7,9 @@ public class Main {
 
     public void mostrarMenuPlataforma (Pasajero p, Plataforma nueve){
         int opcion = 0;
-        while(opcion != 5){
+        while(opcion != 6){
             System.out.println("MENU: ");
-            System.out.println("1.Buscar pasajes" + "\n 2.Suscribirse a rastreo" + "\n 3.Suscribirse a viaje improvisado" +"\n 4.Cancelar compra" + "\n 5.Salir");
+            System.out.println("1.Buscar pasajes" + "\n 2.Rastreo" + "\n 3.Suscribirse a viaje improvisado" +"\n 4.Cancelar compra" + "\n 5.Baja de viaje improvisado" +"\n 6.Salir");
             Scanner s = new Scanner(System.in);
             System.out.println("Ingrese el numero de opcion que desea realizar");
             opcion = s.nextInt();
@@ -34,16 +34,20 @@ public class Main {
                     break;
                 case 3:
                     //Suscribirse a viaje improvisado
-                    
+                    nueve.suscribirseViaje(p);
                     break;
                 case 4:
                     //Cancelar compra
+                    break;
+                case 5:
+                    //Darse de baja de viaje improvisado
+                    nueve.darseBaja(p);
                     break;
             }
         }
     }
     
-    public static void MostrarMenuIngresar (Plataforma nueve){
+    public static void MostrarMenuPasajero(Plataforma nueve){
         int opcion = 0;
         while (opcion != 3){
             System.out.println("INICIO: ");
@@ -115,6 +119,22 @@ public class Main {
         }
     }
 
+    public void menuSeleccion(Plataforma p){
+        int opcion = 0;
+        while ((opc != 1) && (opc != 2)){        
+            System.out.println("Ingrese 1 si sos usuario o ingresa 2 si sos administrador:");
+            Scanner s = new Scanner(System.in);
+            opcion = s.nextInt();
+            s.nextLine();   
+            if (opcion == 1)
+                mostrarMenuPasajero(p);
+            else if (opcion == 2)
+                mostrarMenuAdmin(p);   
+            if ((opcion != 1) && (opcion != 2))
+                System.out.println("La opcion ingresada no es correcta vuelva a intentar");
+        }
+        
+    }
     
     public static void main(String[] args) {
         Banco banco = new Banco("santander");
