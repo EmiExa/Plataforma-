@@ -11,11 +11,11 @@ public class Viaje {
     private ArrayList<Pasaje> pasajesVendidos;
     private Double monto;
 
-    public Viaje(String origen, String destino, Colectivo colectivo,int cantAsientosDisponibles, LocalDate fechaSalida, Double monto, int horasRestantes) { //estabamos un toq complicados con el tema del Localdate
+    public Viaje(String origen, String destino, Colectivo colectivo, LocalDate fechaSalida, Double monto, int horasRestantes) { //estabamos un toq complicados con el tema del Localdate
         this.origen = origen;                                                                                                                               //entonces hicimos el horas restantes para parchearlo
         this.destino = destino;
         this.colectivo = colectivo;
-        this.cantAsientosDisponibles = cantAsientosDisponibles;
+        this.cantAsientosDisponibles = this.colectivo.getAsientos();
         this.fechaSalida = fechaSalida;
         this.monto = monto;
         this.horasRestantes = horasRestantes;
