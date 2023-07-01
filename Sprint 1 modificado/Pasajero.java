@@ -24,8 +24,9 @@ public class Pasajero extends Usuario{
         historialPasajes.addAll(pasajes);
     }
     public void addTarjeta() {
-        System.out.print(" Ingresar número de tarjeta: ");
-        int nroTarjeta = s.nextInt();
+        System.out.print(" Ingresar banco: "); String banco = s.nextString();
+        s.nextLine();
+        System.out.print(" Ingresar número de tarjeta: "); int nroTarjeta = s.nextInt();
         s.nextLine();
         Tarjeta tarjeta = new Tarjeta(nroTarjeta);
         this.tarjeta = tarjeta;
