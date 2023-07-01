@@ -13,7 +13,7 @@ public class Pasaje {
     }
 
     public void imprimir() {
-        System.out.println(" PASAJERO: "+pasajero.getNombre()+" "+pasajero.getApellido()+" ")
+        System.out.println(" PASAJERO: "+pasajero.getNombre()+" "+pasajero.getApellido()+"\n"+viaje.getInfo()+".\n ASIENTO "+asiento+" - VALOR: "+valor+"\n");
     }
     
 }
