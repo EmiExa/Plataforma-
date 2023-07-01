@@ -170,6 +170,49 @@ public class Plataforma {
                 suscribirViaje(comprador);
         }
     }
+
+    public void suscribirseViaje(Pasajero p){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Ingresar el origen al que se quiere suscribir:");
+        String origen = s.nextLine();
+        System.out.println("Ingresar el destino al que se quiere suscribir:");
+        String destino = s.nextLine();   
+        int i = 0;
+        boolean encontrado = false;
+        while ((i<suscripciones.size())&&(encontrado = false)){
+            Suscripcion suscActual = suscripciones.get(i);
+            if ((origen.equals(suscActual.getOrigen()))&&(destino.equals(suscActual.getDestino()))){
+                //Si existe una suscripcion de viaje con ese origen y destino se agrega el pasajero a esta.
+                suscActual.addPasajero(p);
+                encontrado = true;
+            }
+            i++;
+        }
+        if ((encontrado = false)&&(origen != destino)){
+            Suscripcion sus = new Suscripcion(origen,destino);
+            sus.addPasajero(p);
+            suscripciones.add(sus);
+        }
+
+    }
+
+    public void darseBaja(Pasajero p){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Ingresar el origen de la suscripcion para darse de baja:");
+        String origen = s.nextLine();
+        System.out.println("Ingresar el destino de la suscripcion para darse de baja:");
+        String destino = s.nextLine();  
+        int i = 0;
+        boolean encontrado = false;
+        while ((i<suscripciones.size())&&(encontrado = false)){
+            Suscripcion suscActual = suscripciones.get(i);
+            if ((origen.equals(suscActual.getOrigen()))&&(destino.equals(suscActual.getDestino()))){
+                suscActual.eliminarPasajero(p);
+                encontrado = true;
+            }
+            i++;
+        }
+    }
     
     public void generarCompra(Viaje viaje, Pasajero pasajero1){
         sugerirViajeImprovisado(viaje.getOrigen(), viaje.getDestino(), pasajero1);
