@@ -83,7 +83,7 @@ public class Viaje {
     }
 
     public String getInfo() {
-        return " desde "+origen+" hasta "+destino+". "+fechaSalida+""
+        return " desde "+origen+" hasta "+destino+". "+fechaSalida;
     }
 
 }
