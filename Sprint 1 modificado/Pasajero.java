@@ -23,14 +23,16 @@ public class Pasajero extends Usuario{
     public void addPasajes(ArrayList<Pasaje> pasajes) {
         historialPasajes.addAll(pasajes);
     }
+    
     public void addTarjeta() {
         System.out.print(" Ingresar banco: "); String banco = s.nextString();
         s.nextLine();
         System.out.print(" Ingresar número de tarjeta: "); int nroTarjeta = s.nextInt();
         s.nextLine();
-        Tarjeta tarjeta = new Tarjeta(nroTarjeta);
+        Tarjeta tarjeta = new Tarjeta(nroTarjeta,banco,"VISA");
         this.tarjeta = tarjeta;
     }
+    
     private void cambiarClave(String contraseña){
         //generar la clave con sus condiciones
     }
