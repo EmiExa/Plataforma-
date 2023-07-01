@@ -6,12 +6,11 @@ public class Viaje {
     private String destino;
     private int cantAsientosDisponibles;
     private Colectivo colectivo;
-    private LocalDate fechaSalida;
-    private int horasRestantes;
+    private LocalDateTime fechaSalida;
     private ArrayList<Pasaje> pasajesVendidos;
     private Double monto;
 
-    public Viaje(String origen, String destino, Colectivo colectivo, LocalDate fechaSalida, Double monto, int horasRestantes) { //estabamos un toq complicados con el tema del Localdate
+    public Viaje(String origen, String destino, Colectivo colectivo, LocalDateTime fechaSalida, Double monto, int horasRestantes) { //estabamos un toq complicados con el tema del Localdate
         this.origen = origen;                                                                                                                               //entonces hicimos el horas restantes para parchearlo
         this.destino = destino;
         this.colectivo = colectivo;
@@ -23,6 +22,7 @@ public class Viaje {
     }
     
     public boolean esImprovisado( int horas, int lugares){
+        int horasRestantes = (LocalDateTime.now().until(fechaSalida)).get(ChronoUnits.HOURS);
         if((horasRestantes <= horas) && (cantAsientosDisponibles <= lugares))
             return true;
         else
@@ -80,6 +80,10 @@ public class Viaje {
     }
     public boolean disponibilidadAsientos(int cantidad){
         return  (this.cantAsientosDisponibles >= cantidad);
+    }
+
+    public String getInfo() {
+        return " desde "+origen+" hasta "+destino+". "+fechaSalida+""
     }
 
 }
