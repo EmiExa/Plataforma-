@@ -140,11 +140,11 @@ public class Plataforma {
     public void notificarPasajero(Pasajero p, Suscripcion s){
         System.out.println("Te avisamos "+p.getNombre()+ " que el viaje que va de "+s.getOrigen()+" a "+s.getDestino()+" Esta con un descuento por viaje improvisado");
     }
-    public void generarCompra(Viaje viajes, Pasajero pasajero1){
+    public void generarCompra(Viaje viaje, Pasajero pasajero1){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar origen: ");
         int cantidad = s.nextInt();
-        if (viajes.ti>= cantidad){
+        if (viaje.tieneDisponibilidad(cantidad)){
             for (int i = 0; i < cantidad; i++) {
                 System.out.println("Ingrese su dni: " +"\n");
                 int dni = s.nextInt();
@@ -153,7 +153,7 @@ public class Plataforma {
                     registro();
                 }
             }
-            viajes.setCantAsientosDisponibles(cantidad);
+            viaje.setCantAsientosDisponibles(cantidad);
         }
         if(pasajero1.getTarjeta() != null) {
 
