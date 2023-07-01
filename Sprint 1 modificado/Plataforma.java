@@ -168,7 +168,7 @@ public class Plataforma {
                 pasajes.add(generarPasaje(viaje));
             viaje.setCantAsientosDisponibles(cantidad);
             pasajero1.addPasajes(pasajes);
-        }
+            
         if(pasajero1.getTarjeta() != null) {
 
             bancoAsociado.cobrar(pasajero1.getTarjeta(),viajes.getMonto()*cantidad);
@@ -178,5 +178,7 @@ public class Plataforma {
             //Solicitar datos de tarjeta
         }
         // ignoramos pago con creditos
+        }
+        
     }
 }
