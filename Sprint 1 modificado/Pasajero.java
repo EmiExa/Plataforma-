@@ -19,6 +19,10 @@ public class Pasajero extends Usuario{
         suscripciones = new ArrayList<>();
         historialPasajes = new ArrayList<Pasaje>();
     }
+
+    public void addPasajes(ArrayList<Pasaje> pasajes) {
+        historialPasajes.addAll(pasajes);
+    }
     public void agregarTarjeta(Tarjeta tarjeta) {
         this.tarjeta = tarjeta;
     }
