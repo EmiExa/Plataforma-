@@ -17,6 +17,12 @@ public class Administrador extends Usuario{
         if (cantColes > colesMin)
             plataforma.addEmpresa(convenio);
     }
+    
+    public void addConvenioAdherido(Empresa convenio, Plataforma plataforma){
+        int cantColes = convenio.getCantColectivos();
+        if (cantColes > colesMin)
+            plataforma.addEmpresaConv(convenio);
+    }
 
     public void verEstadisticas(){
         //Queda para implementar
