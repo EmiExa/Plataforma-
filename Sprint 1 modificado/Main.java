@@ -1,9 +1,11 @@
 import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.Scanner;
+
 public class Main {
 
-    public void mostrarMenuPlataforma (Pasajero p){
+    public void mostrarMenuPlataforma (Pasajero p, Plataforma nueve){
         int opcion = 0;
         while(opcion != 5){
             System.out.println("MENU: ");
@@ -15,7 +17,7 @@ public class Main {
             switch(opcion){
                 case 1:
                     //Buscar pasajes
-                    Arraylist<Viaje> resultadoBusqueda = nueve.buscarPasajes();
+                    ArrayList<Viaje> resultadoBusqueda = nueve.buscarPasaje();
                     //Elegir asiento
                     System.out.println("Desea comprar un pasaje? 1.SI 2.NO");
                     int realizaCompra = s.nextInt();
@@ -41,7 +43,7 @@ public class Main {
         }
     }
     
-    public void MostrarMenuIngresar (){
+    public static void MostrarMenuIngresar (Plataforma nueve){
         int opcion = 0;
         while (opcion != 3){
             System.out.println("INICIO: ");
@@ -52,15 +54,17 @@ public class Main {
             s.nextLine();
             if (opcion == 1){
                 //Loguearse
-                Pasajero p = nueve.login();
+                int dni = s.nextInt();
+                s.nextLine();
+                String clave = s.nextLine();
+                Pasajero p = nueve.login(dni,clave);
                 if (p != null)
-                    mostrarMenuPlataforma(p);
+                    mostrarMenuPlataforma(p,nueve);
                 else{
                     System.out.println("Su usuario no fue encontrado");
                 }          
             } else if (opcion == 2){
-                //Registrarse
-                Pasajero p = nueve.registro();
+                nueve.registro();
             } else if (opcion != 3){
                 System.out.println("La opcion ingresada no es correcta, vuelva a intentar");
             }
@@ -76,7 +80,6 @@ public class Main {
         Banco banco = new Banco("santander");
         Pasajero pia = new Pasajero("pia","Bedini", 12345678, tarjeta,"piabedini@gmail.com", "abc123");
         pia.suscribirseViaje("Tandil","La plata");
-*/
         //Creacion Empresa adherida
         EmpresaAdherida viaTac = new EmpresaAdherida("Viatac", 0.5,6,20);
         //CreacionColectivo
@@ -86,8 +89,8 @@ public class Main {
         Viaje viaje = new Viaje("Tandil", "La plata",cole, cole.getAsientos(), fecha, 1200.0, 5);
         viaTac.addViaje(viaje);
         nueve.registro();
-        nueve.login();
         nueve.addEmpresaConv(viaTac);
-        nueve.notificarViajesImprovisados();
+        nueve.notificarViajesImprovisados();*/
+        MostrarMenuIngresar(nueve);
     }
 }
