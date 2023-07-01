@@ -7,7 +7,6 @@ public class Viaje {
     private int cantAsientosDisponibles;
     private Colectivo colectivo;
     private LocalDateTime fechaSalida;
-    private ArrayList<Pasaje> pasajesVendidos;
     private Double monto;
 
     public Viaje(String origen, String destino, Colectivo colectivo, LocalDateTime fechaSalida, Double monto, int horasRestantes) { //estabamos un toq complicados con el tema del Localdate
