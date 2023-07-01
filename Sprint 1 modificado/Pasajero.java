@@ -25,6 +25,9 @@ public class Pasajero extends Usuario{
     }
     public void addTarjeta() {
         System.out.print(" Ingresar número de tarjeta: ");
+        int nroTarjeta = s.nextInt();
+        s.nextLine();
+        Tarjeta tarjeta = new Tarjeta(nroTarjeta);
         this.tarjeta = tarjeta;
     }
     private void cambiarClave(String contraseña){
