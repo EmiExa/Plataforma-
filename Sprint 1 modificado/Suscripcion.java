@@ -10,6 +10,9 @@ public class Suscripcion {
     public void addPasajero(Pasajero p){
             pasajeros.add(p);
     }
+    public void eliminarPasajero(Pasajero p){
+        pasajero.remove(p);
+    }
     public boolean equals(Object s){
         if (s instanceof Suscripcion) {
             Suscripcion sus = (Suscripcion) s;

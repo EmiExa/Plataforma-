@@ -11,22 +11,28 @@ public class Viaje {
     private ArrayList<Pasaje> pasajesVendidos;
     private Double monto;
 
-    public Viaje(String origen, String destino, Colectivo colectivo,int cantAsientosDisponibles, LocalDate fechaSalida, Double monto, int horasRestantes) { //estabamos un toq complicados con el tema del Localdate
+    public Viaje(String origen, String destino, Colectivo colectivo, LocalDate fechaSalida, Double monto, int horasRestantes) { //estabamos un toq complicados con el tema del Localdate
         this.origen = origen;                                                                                                                               //entonces hicimos el horas restantes para parchearlo
         this.destino = destino;
         this.colectivo = colectivo;
-        this.cantAsientosDisponibles = cantAsientosDisponibles;
+        this.cantAsientosDisponibles = this.colectivo.getAsientos();
         this.fechaSalida = fechaSalida;
         this.monto = monto;
         this.horasRestantes = horasRestantes;
         this.pasajesVendidos = new ArrayList<Pasaje>();
     }
+    
     public boolean esImprovisado( int horas, int lugares){
         if((horasRestantes <= horas) && (cantAsientosDisponibles <= lugares))
             return true;
         else
             return false;
     }
+
+    public boolean tieneDisponibilidad() {
+        return this.cantAsientosDisponibles > 0;
+    }
+    
     public void addPasajero(Pasaje pas){
         if(cantAsientosDisponibles>0) {
             this.pasajesVendidos.add(pas);
