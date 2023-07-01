@@ -161,10 +161,18 @@ public class Plataforma {
         Pasaje pasaje = new Pasaje(p,viaje,0,viaje.getMonto());
         return pasaje;
     }
+
+    public void sugerirViajeImprovisado(String origen, String destino, Pasajero comprador) {
+        if (comprador.cantViajes(origen,destino) >= 3) {
+            System.out.println(" Notamos que realiza este viaje con frecuencia.\n¿Desea suscribirse al servicio de viaje improvisado para esta ruta?");
+            // pedirle 1 o 0
+        }
+    }
     
     public void generarCompra(Viaje viaje, Pasajero pasajero1){
+        sugerirViajeImprovisado(viaje.getOrigen(), viaje.getDestino(), pasajero1);
         Scanner s = new Scanner(System.in);
-        System.out.println("Ingresar origen: ");
+        System.out.println("Ingresar cantidad de pasajeros: ");
         int cantidad = s.nextInt();
         if (viaje.tieneDisponibilidad(cantidad)) {
             ArrayList<Pasaje> pasajes = new ArrayList<>();
