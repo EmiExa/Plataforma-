@@ -33,12 +33,11 @@ public class Plataforma {
         }
         return null;
     }
-    public Pasajero buscaPasajero( int dni){
+    public Pasajero buscaPasajero(int dni){
         for (int i = 0; i < pasajeros.size(); i++) {
             Pasajero p = pasajeros.get(i);
-            if (p.getDni() == dni){
+            if (p.getDni() == dni)
                 return p;
-            }
         }
         return null;
     }
@@ -145,7 +144,8 @@ public class Plataforma {
         System.out.println("Ingrese su dni: " +"\n");
         int dni = s.nextInt();
         Pasajero p = this.buscaPasajero(dni);
-        if (p == null){
+        if (p != null){
+            Pasaje pasaje = new Pasaje(p,)
             registro();
         }
     }
