@@ -11,5 +11,9 @@ public class Pasaje {
         this.viaje = viaje;
         valor = costo;
     }
+
+    public void imprimir() {
+        System.out.println(" PASAJERO: "+pasajero.getNombre()+" "+pasajero.getApellido()+" ")
+    }
     
 }
