@@ -13,13 +13,15 @@ public class Banco {
     public void verificarDatos(){
         //verifica los datos de la tarjeta
     }
-    public void cobrar(Tarjeta tar, double monto){
+    public boolean cobrar(Tarjeta tar, double monto){
         for (int i = 0; i < tarjetas.size(); i++) {
             Tarjeta aux = tarjetas.get(i);
             if (aux.getNum() == tar.getNum()){
-                //aca se cobra
+                // if cobro es exitoso
+                return true;
             }
         }
+        return false;
     }
     public Tarjeta  buscarTarjeta(int num, String marca){
         for(int i=0;i<tarjetas.size();i++){
