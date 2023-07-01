@@ -151,8 +151,13 @@ public class Plataforma {
         int dni = s.nextInt();
         s.nextLine();
         Pasajero p = this.buscaPasajero(dni);
-        if (p == null)
-            p = new Pasajero("nombre","apellido",dni,"","");
+        if (p == null) {
+            System.out.print("Ingrese el nombre del pasajero: " +"\n");
+            String nombre = s.nextString(); s.nextLine();
+            System.out.print("Ingrese el apellido del pasajero: " +"\n");
+            String apellido = s.nextString(); s.nextLine();
+            p = new Pasajero(nombre,apellido,dni,"","");
+        }
         Pasaje pasaje = new Pasaje(p,viaje,0,viaje.getMonto());
         return pasaje;
     }
