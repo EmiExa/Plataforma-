@@ -70,6 +70,51 @@ public class Main {
             }
         }
     }
+
+    public static void MostrarMenuAdmin (Plataforma plat){
+        boolean ingreso = false;
+        while(!ingreso){
+            System.out.println("LOGIN");
+            Administrador admin = plat.login();
+            if (admin != null){
+                ingreso = true;
+                while (opcion != 3)
+                    int opcion = 0;
+                    System.out.println("MENU ADMINISTRADOR: ");
+                    System.out.println("1.Agregar convenio"+ "\n 2.Ver estadisticas" +"\n 3.Salir");
+                    System.out.println("Ingrese el numero de opcion que desea realizar:");
+                    opcion = s.nextInt();
+                    s.nextLine();
+                    if (opcion == 1){
+                        //Agregar convenio
+                        Scanner s = new Scanner(System.in);
+                        String nombre = s.nextLine();
+                        Empresa emp = new Empresa(nombre);
+                        int opc = 0;
+                        while ((opc != 1) && (opc != 2)){
+                            System.out.println("Desea que su empresa esta adherida? 1.SI 2.NO");
+                            opc = s.nextInt();
+                            s.nextLine();
+                            if (opc == 1)
+                                admin.addConvenioAdherido(emp, plat);
+                            else if (opc == 2)
+                                admin.addConvenio(emp, plat);
+                            if ((opc != 1) && (opc != 2))
+                                System.out.println("La opcion ingresada no es correcta vuelva a intentar");
+                        }
+                    }
+                    if (opcion == 2){
+                        //Ver Estadisticas
+                        //Queda a implementar 
+                    }
+                    if (opcion != 3){
+                        System.out.println("La opcion ingresada es incorrecta vuelva a intentar");
+                    }
+            } else
+                System.out.println("El usuario ingresado es incorrecto vuelva a intentar");
+        }
+    }
+
     
     public static void main(String[] args) {
         Banco banco = new Banco("santander");
