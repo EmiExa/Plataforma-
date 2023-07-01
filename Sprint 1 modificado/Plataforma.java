@@ -165,7 +165,9 @@ public class Plataforma {
     public void sugerirViajeImprovisado(String origen, String destino, Pasajero comprador) {
         if (comprador.cantViajes(origen,destino) >= 3) {
             System.out.println(" Notamos que realiza este viaje con frecuencia.\n¿Desea suscribirse al servicio de viaje improvisado para esta ruta?");
-            // pedirle 1 o 0
+            System.out.print(" Ingresar 1 (si) o 0 (no): ");
+            if (s.nextInt()==1)
+                
         }
     }
     
