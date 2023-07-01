@@ -22,7 +22,7 @@ public class Plataforma {
         bancoAsociado = banco;
     }
 
-    public Pasajero login(){
+    public Usuario login(){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar dni: "); int dni = s.nextInt();
         s.nextLine(); //descarta el salto de linea genereado por nextint
@@ -167,18 +167,14 @@ public class Plataforma {
             for (int i = 0; i < cantidad; i++)
                 pasajes.add(generarPasaje(viaje));
             viaje.setCantAsientosDisponibles(cantidad);
-            pasajero1.addPasajes(pasajes);
-            
-        if(pasajero1.getTarjeta() != null) {
-
-            bancoAsociado.cobrar(pasajero1.getTarjeta(),viajes.getMonto()*cantidad);
-            //Enviar mail de notificiacion
+            // Gestión del pago:
+            // ignoramos pago con creditos
+            if (pasajero1.getTarjeta() == null)
+                pasajero1.addTarjeta();
+            if (bancoAsociado.cobrar(pasajero1.getTarjeta(),viajes.getMonto()*cantidad)) {
+                // Enviar mail de notificiacion
+                pasajero1.addPasajes(pasajes);
+            }
         }
-        else {
-            //Solicitar datos de tarjeta
-        }
-        // ignoramos pago con creditos
-        }
-        
     }
 }
