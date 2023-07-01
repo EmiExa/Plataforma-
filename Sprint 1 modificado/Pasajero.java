@@ -25,14 +25,7 @@ public class Pasajero extends Usuario{
     private void cambiarClave(String contraseña){
         //generar la clave con sus condiciones
     }
-    public void suscribirseViaje(String origen, String destino){
-        Suscripcion s = new Suscripcion(origen,destino);
-        suscripciones.add(s);
-    }
-    public void darseBaja(String origen, String destino){
-        Suscripcion s = new Suscripcion(origen,destino);
-        suscripciones.remove(s);
-    }
+    
     public boolean suscrito(Suscripcion s){
         return suscripciones.contains(s);
     }
