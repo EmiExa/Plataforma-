@@ -105,11 +105,8 @@ public class Plataforma {
     }
 
 
-    public void addPasajero(Pasajero p){
-        pasajeros.add(p);
-    }
-    public void addAdmin(Administrador a){
-        admins.add(a);
+    public void addUsuario(Usuario u){
+        pasajeros.add(u);
     }
     public void addEmpresa(Empresa emp){
         empresas.add(emp);
