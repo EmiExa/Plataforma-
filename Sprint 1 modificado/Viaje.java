@@ -21,12 +21,18 @@ public class Viaje {
         this.horasRestantes = horasRestantes;
         this.pasajesVendidos = new ArrayList<Pasaje>();
     }
+    
     public boolean esImprovisado( int horas, int lugares){
         if((horasRestantes <= horas) && (cantAsientosDisponibles <= lugares))
             return true;
         else
             return false;
     }
+
+    public boolean tieneDisponibilidad() {
+        return this.cantAsientosDisponibles > 0;
+    }
+    
     public void addPasajero(Pasaje pas){
         if(cantAsientosDisponibles>0) {
             this.pasajesVendidos.add(pas);
