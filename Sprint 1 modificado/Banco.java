@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Banco {
     private ArrayList<Tarjeta> tarjetas;
     private String nombre;
@@ -31,12 +29,4 @@ public class Banco {
         }
         return null;
     }
-	public boolean validar(int nroTarjeta) {
-		for(Tarjeta t: tarjetas) {
-			if (t.getNum()==nroTarjeta)
-				return true;
-		}
-		return false;
-			
-	}
 }
