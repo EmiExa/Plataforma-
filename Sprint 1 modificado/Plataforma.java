@@ -125,6 +125,7 @@ public class Plataforma {
             empresas.add(emp);
     }
     public void addEmpresaConv(EmpresaAdherida emp){ //aca el problema
+    	this.addEmpresa(emp);
         if (!empresasConvenio.contains(emp))
             empresasConvenio.add(emp);
     }
@@ -157,7 +158,9 @@ public class Plataforma {
     }*/
 
     private Pasaje generarPasaje(Viaje v) {
+    	System.out.println("GENERANDO PASAJE -");
         Scanner s = new Scanner(System.in);
+        
         System.out.println("Ingrese su dni: " +"\n");
         int dni = s.nextInt();
         s.nextLine();
@@ -169,7 +172,7 @@ public class Plataforma {
             String apellido = s.nextLine(); s.nextLine();
             p = new Pasajero(nombre,apellido,dni,"","");
         }
-        Pasaje pasaje = new Pasaje((Pasajero) p,v,0,v.getMonto());
+        Pasaje pasaje = new Pasaje((Pasajero)p,v,0,v.getMonto());
         return pasaje;
     }
 
@@ -185,7 +188,10 @@ public class Plataforma {
     }
 
     public void generarCompra(Viaje viaje, Pasajero comprador){
-        sugerirViajeImprovisado(viaje, comprador);
+    	System.out.println(viaje.getOrigen());
+    	
+    	
+        //sugerirViajeImprovisado(viaje, comprador);
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar cantidad de pasajeros: ");
         int cantidad = s.nextInt();
@@ -193,7 +199,7 @@ public class Plataforma {
             ArrayList<Pasaje> pasajes = new ArrayList<>();
             for (int i = 0; i < cantidad; i++)
                 pasajes.add(generarPasaje(viaje));
-            viaje.setCantAsientosDisponibles(cantidad);
+            viaje.decrementarAsientosDisponibles(cantidad);
             // Gestión del pago:
             // ignoramos pago con creditos
             if (comprador.getTarjeta() == null)
@@ -201,8 +207,10 @@ public class Plataforma {
             if (bancoAsociado.cobrar(comprador.getTarjeta(),viaje.getMonto()*cantidad)) {
                 // Enviar mail de notificiacion
                 comprador.addPasajes(pasajes);
+                System.out.println("LA COMPRA FUE EXITOSA");
             }
         }
+        
     }
     public void suscribirseViaje(Pasajero p){
         Scanner s = new Scanner(System.in);
