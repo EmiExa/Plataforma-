@@ -10,16 +10,15 @@ public class Administrador extends Usuario{
     }
 
     public String getClave() {
-        return this.clave();
+        return this.clave;
     }
-
     public void addConvenio(Empresa convenio, Plataforma plataforma){
         int cantColes = convenio.getCantColectivos();
         if (cantColes > colesMin)
             plataforma.addEmpresa(convenio);
     }
 
-    public void addConvenioAdherido(Empresa convenio, Plataforma plataforma){ //tendria que ser una empresa adherida es lo mismo pero bueno si no castear
+    public void addConvenioAdherido(EmpresaAdherida convenio, Plataforma plataforma){ //tendria que ser una empresa adherida es lo mismo pero bueno si no castear
         int cantColes = convenio.getCantColectivos();
         if (cantColes > colesMin)
             plataforma.addEmpresaConv(convenio);
