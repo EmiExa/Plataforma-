@@ -147,7 +147,9 @@ public class Plataforma {
     }
 
     private Pasaje generarPasaje(Viaje v) {
+    	System.out.println("GENERANDO PASAJE -");
         Scanner s = new Scanner(System.in);
+        
         System.out.println("Ingrese su dni: " +"\n");
         int dni = s.nextInt();
         s.nextLine();
@@ -156,10 +158,10 @@ public class Plataforma {
             System.out.print("Ingrese el nombre del pasajero: " +"\n");
             String nombre = s.nextLine(); s.nextLine();
             System.out.print("Ingrese el apellido del pasajero: " +"\n");
-            String apellido = s.nextLine();
+            String apellido = s.nextLine(); s.nextLine();
             p = new Pasajero(nombre,apellido,dni,"","");
         }
-        Pasaje pasaje = new Pasaje((Pasajero) p,v,0,v.getMonto());
+        Pasaje pasaje = new Pasaje((Pasajero)p,v,0,v.getMonto());
         return pasaje;
     }
 
