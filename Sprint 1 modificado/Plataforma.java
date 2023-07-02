@@ -8,6 +8,7 @@ public class Plataforma {
     private ArrayList<Usuario> usuarios;
     private Banco bancoAsociado;
     private ArrayList<EmpresaAdherida> empresasConvenio;
+    private ArrayList<Suscripcion> suscripciones;
 
     public Plataforma(Banco banco) {
         empresas = new ArrayList<>();
@@ -19,6 +20,7 @@ public class Plataforma {
     public void setBanco(Banco banco) {
         bancoAsociado = banco;
     }
+
 
     public Usuario login(){
         Scanner s = new Scanner(System.in);
@@ -35,18 +37,19 @@ public class Plataforma {
         }
         return null;
     }
-
-    public Pasajero buscaPasajero(int dni){
-
-        for (int i = 0; i < pasajeros.size(); i++) {
-            Pasajero p = pasajeros.get(i);
+    public void darBajaEmpresa(Empresa empresa){
+        //Buscamos en ambas listas Empresa o en empresa adherida en caso de que este en alguna de las 2 las damos de baja.
+    }
+    public Usuario buscaPasajero(int dni){  // buscar usuario cambiar nombre
+        for (int i = 0; i < usuarios.size(); i++) {
+            Usuario p = usuarios.get(i);
             if (p.getDni() == dni)
                 return p;
         }
         return null;
     }
-    
-   public void registro(){
+
+    public void registro(){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar nombre: "); String nombre = s.nextLine();
         System.out.println("Ingresar apellido: "); String apellido = s.nextLine();
@@ -54,18 +57,18 @@ public class Plataforma {
         s.nextLine(); //descarta el salto de linea genereado por nextint
         System.out.println("Ingresar Email: "); String email = s.nextLine();
         System.out.println("Ingresar clave: "); String clave = s.nextLine();
-        if (buscaPasejero(dni) == null){
+        if (buscaPasajero(dni) == null){
             Pasajero p = new Pasajero(nombre,apellido,dni,email,clave);
             System.out.println("Quiere asociar una tarjeta de credito?");
             System.out.println("1) Si" + "\n2) No");
             int aux = s.nextInt();
             if (aux == 1)
-                agregarTarjeta();
+                p.addTarjeta(bancoAsociado);
             System.out.println("Te has registrado con exito!!");
             this.addUsuario(p);
         }
-   }
-    public vois agregarTarjeta(){
+    }
+    /* public void agregarTarjeta(Pasajero p){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar numero de Tarjeta:"); int num = s.nextInt();
         s.nextLine(); //descarta el salto de linea genereado por nextint
@@ -75,8 +78,8 @@ public class Plataforma {
             p.agregarTarjeta(t);
         } else
             System.out.println("No se ha encontrado la tarjeta");
-    }
-    
+    }*/
+
     public ArrayList<Viaje> buscarPasaje() {
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar origen: ");
@@ -109,13 +112,13 @@ public class Plataforma {
 
 
     public void addUsuario(Usuario u){
-        usuario.add(u);
+        usuarios.add(u);
     }
     public void addEmpresa(Empresa emp){
-        if (!empresas.contains(emp))        
+        if (!empresas.contains(emp))
             empresas.add(emp);
     }
-    public void addEmpresaConv(EmpresaAdherida emp){
+    public void addEmpresaConv(EmpresaAdherida emp){ //aca el problema
         if (!empresasConvenio.contains(emp))
             empresasConvenio.add(emp);
     }
@@ -124,59 +127,83 @@ public class Plataforma {
         empresas.remove(emp);
         empresasConvenio.add(empresa);
     }
+    public Suscripcion existeSuscripcion(Viaje viaje){
+        for(Suscripcion sus:suscripciones){
+            if ((sus.getOrigen() == viaje.getOrigen()) && (sus.getDestino() == viaje.getDestino()))
+                return sus;
+        }
+        return null;
+    }
     public void notificarViajesImprovisados(){
-        ArrayList<Suscripcion> suscripciones = new ArrayList<>();
-        for(int i = 0; i<empresasConvenio.size(); i++){
-            ArrayList<Suscripcion> s = new ArrayList<>();
-            s = empresasConvenio.get(i).chequearViajeimprovisados();
-            for(int j = 0; j< s.size(); j++){
-                if(!suscripciones.contains(s.get(j)))
-                    suscripciones.add(s.get(j));
-            }
+        ArrayList<Viaje> viajes = new ArrayList<>();
+        for(EmpresaAdherida emp:empresasConvenio) {
+            viajes.addAll(emp.chequearViajeimprovisados());
         }
-        for(int i = 0; i< usuarios.size(); i++){
-            for(int j = 0; j<suscripciones.size(); j++) {
-                Suscripcion suscripcion = suscripciones.get(j);
-                if (usuarios.get(i).suscrito(suscripcion))
-                    this.notificarPasajero(usuarios.get(i), suscripcion);
+        for(int i = 0; i<viajes.size(); i++){
+            Suscripcion sus = existeSuscripcion(viajes.get(i));
+            if(sus != null){
+                sus.notificar(viajes.get(i));
             }
         }
     }
-    public void notificarPasajero(Pasajero p, Suscripcion s){
+    /*public void notificarPasajero(Pasajero p, Suscripcion s){
         System.out.println("Te avisamos "+p.getNombre()+ " que el viaje que va de "+s.getOrigen()+" a "+s.getDestino()+" Esta con un descuento por viaje improvisado");
-    }
+    }*/
 
-    private Pasaje generarPasaje() {
+    private Pasaje generarPasaje(Viaje v) {
+        Scanner s = new Scanner(System.in);
         System.out.println("Ingrese su dni: " +"\n");
         int dni = s.nextInt();
         s.nextLine();
-        Pasajero p = this.buscaPasajero(dni);
+        Usuario p = this.buscaPasajero(dni);
         if (p == null) {
             System.out.print("Ingrese el nombre del pasajero: " +"\n");
-            String nombre = s.nextString(); s.nextLine();
+            String nombre = s.nextLine(); s.nextLine();
             System.out.print("Ingrese el apellido del pasajero: " +"\n");
-            String apellido = s.nextString(); s.nextLine();
+            String apellido = s.nextLine(); s.nextLine();
             p = new Pasajero(nombre,apellido,dni,"","");
         }
-        Pasaje pasaje = new Pasaje(p,viaje,0,viaje.getMonto());
+        Pasaje pasaje = new Pasaje((Pasajero) p,v,0,v.getMonto());
         return pasaje;
     }
 
-    public void sugerirViajeImprovisado(String origen, String destino, Pasajero comprador) {
-        if (comprador.cantViajes(origen,destino) >= 3) {
+    public void sugerirViajeImprovisado(Viaje viaje, Pasajero comprador) {
+        Scanner s = new Scanner(System.in);
+        Suscripcion sus = existeSuscripcion(viaje);
+        if ((comprador.cantViajes(viaje.getOrigen(),viaje.getDestino()) >= 3) && (!sus.existePasajero(comprador))) {
             System.out.println(" Notamos que realiza este viaje con frecuencia.\n¿Desea suscribirse al servicio de viaje improvisado para esta ruta?");
             System.out.print(" Ingresar 1 (si) o 0 (no): ");
             if (s.nextInt()==1)
-                suscribirViaje(comprador);
+                suscribirseViaje(comprador);
         }
     }
 
+    public void generarCompra(Viaje viaje, Pasajero comprador){
+        sugerirViajeImprovisado(viaje, comprador);
+        Scanner s = new Scanner(System.in);
+        System.out.println("Ingresar cantidad de pasajeros: ");
+        int cantidad = s.nextInt();
+        if (viaje.tieneDisponibilidad(cantidad)) {
+            ArrayList<Pasaje> pasajes = new ArrayList<>();
+            for (int i = 0; i < cantidad; i++)
+                pasajes.add(generarPasaje(viaje));
+            viaje.setCantAsientosDisponibles(cantidad);
+            // Gestión del pago:
+            // ignoramos pago con creditos
+            if (comprador.getTarjeta() == null)
+                comprador.addTarjeta(bancoAsociado);
+            if (bancoAsociado.cobrar(comprador.getTarjeta(),viaje.getMonto()*cantidad)) {
+                // Enviar mail de notificiacion
+                comprador.addPasajes(pasajes);
+            }
+        }
+    }
     public void suscribirseViaje(Pasajero p){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar el origen al que se quiere suscribir:");
         String origen = s.nextLine();
         System.out.println("Ingresar el destino al que se quiere suscribir:");
-        String destino = s.nextLine();   
+        String destino = s.nextLine();
         int i = 0;
         boolean encontrado = false;
         while ((i<suscripciones.size())&&(encontrado = false)){
@@ -195,13 +222,12 @@ public class Plataforma {
         }
 
     }
-
     public void darseBaja(Pasajero p){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar el origen de la suscripcion para darse de baja:");
         String origen = s.nextLine();
         System.out.println("Ingresar el destino de la suscripcion para darse de baja:");
-        String destino = s.nextLine();  
+        String destino = s.nextLine();
         int i = 0;
         boolean encontrado = false;
         while ((i<suscripciones.size())&&(encontrado = false)){
@@ -211,27 +237,6 @@ public class Plataforma {
                 encontrado = true;
             }
             i++;
-        }
-    }
-    
-    public void generarCompra(Viaje viaje, Pasajero pasajero1){
-        sugerirViajeImprovisado(viaje.getOrigen(), viaje.getDestino(), pasajero1);
-        Scanner s = new Scanner(System.in);
-        System.out.println("Ingresar cantidad de pasajeros: ");
-        int cantidad = s.nextInt();
-        if (viaje.tieneDisponibilidad(cantidad)) {
-            ArrayList<Pasaje> pasajes = new ArrayList<>();
-            for (int i = 0; i < cantidad; i++)
-                pasajes.add(generarPasaje(viaje));
-            viaje.setCantAsientosDisponibles(cantidad);
-            // Gestión del pago:
-            // ignoramos pago con creditos
-            if (pasajero1.getTarjeta() == null)
-                pasajero1.addTarjeta();
-            if (bancoAsociado.cobrar(pasajero1.getTarjeta(),viajes.getMonto()*cantidad)) {
-                // Enviar mail de notificación
-                pasajero1.addPasajes(pasajes);
-            }
         }
     }
 }
