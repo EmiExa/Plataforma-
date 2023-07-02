@@ -31,4 +31,12 @@ public class Banco {
         }
         return null;
     }
+	public boolean validar(int nroTarjeta) {
+		for(Tarjeta t: tarjetas) {
+			if (t.getNum()==nroTarjeta)
+				return true;
+		}
+		return false;
+			
+	}
 }
