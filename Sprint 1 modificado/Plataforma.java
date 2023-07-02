@@ -15,6 +15,7 @@ public class Plataforma {
         usuarios = new ArrayList<>();
         empresasConvenio = new ArrayList<>();
         bancoAsociado = banco;
+        this.suscripciones= new ArrayList<>();
     }
 
     public void setBanco(Banco banco) {
@@ -70,16 +71,21 @@ public class Plataforma {
     }
 
     public ArrayList<Viaje> buscarPasaje() {
+        //Ingresar parametros del viaje
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar origen: ");
         String origen = s.nextLine();
         System.out.println("Ingresar destino: ");
         String destino = s.nextLine();
-        System.out.println("Ingresar Fecha: ");
+        System.out.println("Ingresar dia: ");
         //convert String to LocalDate
         String dateString = s.nextLine();
+        System.out.println("Ingresar mes: ");
+        String dateString2 = s.nextLine();
+        System.out.println("Ingresar año: ");
+        String dateString3 = s.nextLine();
+        dateString = dateString +"/" + dateString2+ "/" + dateString3;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
         LocalDate localDate = LocalDate.parse(dateString, formatter);
         System.out.println(localDate);
 
@@ -110,7 +116,7 @@ public class Plataforma {
             empresas.add(emp);
     }
     public void addEmpresaConv(EmpresaAdherida emp){ //aca el problema
-    	this.addEmpresa(emp);
+        this.addEmpresa(emp);
         if (!empresasConvenio.contains(emp))
             empresasConvenio.add(emp);
     }
@@ -141,9 +147,7 @@ public class Plataforma {
     }
 
     private Pasaje generarPasaje(Viaje v) {
-    	System.out.println("GENERANDO PASAJE -");
         Scanner s = new Scanner(System.in);
-        
         System.out.println("Ingrese su dni: " +"\n");
         int dni = s.nextInt();
         s.nextLine();
@@ -152,10 +156,10 @@ public class Plataforma {
             System.out.print("Ingrese el nombre del pasajero: " +"\n");
             String nombre = s.nextLine(); s.nextLine();
             System.out.print("Ingrese el apellido del pasajero: " +"\n");
-            String apellido = s.nextLine(); s.nextLine();
+            String apellido = s.nextLine();
             p = new Pasajero(nombre,apellido,dni,"","");
         }
-        Pasaje pasaje = new Pasaje((Pasajero)p,v,0,v.getMonto());
+        Pasaje pasaje = new Pasaje((Pasajero) p,v,0,v.getMonto());
         return pasaje;
     }
 
@@ -171,7 +175,6 @@ public class Plataforma {
     }
 
     public void generarCompra(Viaje viaje, Pasajero comprador){
-    	System.out.println(viaje.getOrigen());
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar cantidad de pasajeros: ");
         int cantidad = s.nextInt();
@@ -179,7 +182,7 @@ public class Plataforma {
             ArrayList<Pasaje> pasajes = new ArrayList<>();
             for (int i = 0; i < cantidad; i++)
                 pasajes.add(generarPasaje(viaje));
-            viaje.decrementarAsientosDisponibles(cantidad);
+            viaje.setCantAsientosDisponibles(cantidad);
             // Gestión del pago:
             // ignoramos pago con creditos
             if (comprador.getTarjeta() == null)
