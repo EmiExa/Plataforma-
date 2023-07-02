@@ -9,19 +9,19 @@ public class main234 {
     }
 
     public void cargarEmpresasEstatica(Plataforma p) {
-        //Evita el menu de administrador para cargar las empresas mas rapido y poder probarlo.
+       //Evita el menu de administrador para cargar las empresas mas rapido y poder probarlo.
         Administrador admin = new Administrador("Pia","Benediti",12345);
         //CREACION EMPRESAS
         Empresa e1 = new Empresa("El gorrion");
         Empresa e2 = new Empresa("Langueyu");
         Empresa e3 = new Empresa("Condor Estrella");
-        EmpresaAdherida e4 = new EmpresaAdherida("Plusmar",0.5,2,5);
-        EmpresaAdherida e5 = new EmpresaAdherida("Flechabus",0.4,3,5);
-        EmpresaAdherida e6 = new EmpresaAdherida("El Rapido",0.8,3,9);
+        EmpresaAdherida e4 = new EmpresaAdherida("Plusmar",0.5,10,50);
+        EmpresaAdherida e5 = new EmpresaAdherida("Flechabus",0.4,10,50);
+        EmpresaAdherida e6 = new EmpresaAdherida("El Rapido",0.8,10,50);
 
         //CREACION COLECTIVOS
-        Colectivo c1 = new Colectivo(1, 30, e1);
-        Colectivo c2 = new Colectivo(1, 20, e4);
+        Colectivo c1 = new Colectivo(1, 5, e1);
+        Colectivo c2 = new Colectivo(1, 5, e4);
 
         //CREACION VIAJES
         Viaje v1 = new Viaje("Tandil", "MarDelPlata",  c1, LocalDateTime.now(), 1500.0);
@@ -73,16 +73,21 @@ public class main234 {
                     //Buscar pasajes
                     ArrayList<Viaje> resultadoBusqueda = nueve.buscarPasaje();
                     //Elegir asiento
-                    System.out.println("Desea comprar un pasaje? 1.SI 2.NO");
-                    int realizaCompra = s.nextInt();
-                    if (realizaCompra == 1) {
-                        System.out.println("Seleccione el numero de viaje que desea comprar:");
-                        int op = s.nextInt();
-                        s.nextLine();
-                        if ((op > -1) && (op < resultadoBusqueda.size())){
-                            nueve.generarCompra(resultadoBusqueda.get(op),p);
-                        } else System.out.println("OPCION INCORRECTA");
-                    } else System.out.println("OPCION INCORRECTA");
+                    if(resultadoBusqueda.size()>0) {
+                        System.out.println("Desea comprar un pasaje? 1.SI 2.NO");
+                        int realizaCompra = s.nextInt();
+                        if (realizaCompra == 1) {
+                            System.out.println("Seleccione el numero de viaje que desea comprar:");
+                            int op = s.nextInt();
+                            if ((op > -1) && (op < resultadoBusqueda.size())) {
+                                nueve.generarCompra(resultadoBusqueda.get(op), p);
+                            } 
+                            else System.out.println("OPCION INCORRECTA");
+                        } 
+                        else System.out.println("OPCION INCORRECTA");
+                    }
+                    else
+                        System.out.println("No hay ningun viaje con los parametros ingresados");
                     break;
                 case 2:
                     //Suscribirse a rastreo
@@ -90,6 +95,7 @@ public class main234 {
                 case 3:
                     //Suscribirse a viaje improvisado
                     nueve.suscribirseViaje(p);
+                    nueve.notificarViajesImprovisados();
                     break;
                 case 4:
                     //Cancelar compra
