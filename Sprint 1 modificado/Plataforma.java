@@ -69,6 +69,7 @@ public class Plataforma {
             this.addUsuario(p);
         }
     }
+
     public ArrayList<Viaje> buscarPasaje() {
         //Ingresar parametros del viaje
         Scanner s = new Scanner(System.in);
@@ -98,9 +99,7 @@ public class Plataforma {
         listarServicios(salida);
         return salida;
     }
-    public int longEmpresas(){
-        return empresasConvenio.size() + empresas.size();
-    }
+
     public void listarServicios(ArrayList<Viaje> salida){
         for (int i = 0; i < salida.size(); i++) {
             Viaje actual = salida.get(i);
@@ -146,6 +145,7 @@ public class Plataforma {
             }
         }
     }
+
     private Pasaje generarPasaje(Viaje v) {
         Scanner s = new Scanner(System.in);
         System.out.println("Ingrese su dni: " +"\n");
@@ -175,7 +175,6 @@ public class Plataforma {
     }
 
     public void generarCompra(Viaje viaje, Pasajero comprador){
-        sugerirViajeImprovisado(viaje, comprador);
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar cantidad de pasajeros: ");
         int cantidad = s.nextInt();
@@ -191,8 +190,11 @@ public class Plataforma {
             if (bancoAsociado.cobrar(comprador.getTarjeta(),viaje.getMonto()*cantidad)) {
                 // Enviar mail de notificiacion
                 comprador.addPasajes(pasajes);
+                System.out.println("LA COMPRA FUE EXITOSA");
+                sugerirViajeImprovisado(viaje, comprador);
             }
-        }
+            else System.out.println("LA COMPRA NO FUE EXITOSA");
+        } 
     }
     public void suscribirseViaje(Pasajero p){
         Scanner s = new Scanner(System.in);
@@ -223,6 +225,7 @@ public class Plataforma {
             System.out.println("No se realizo la suscripcion con exito");
 
     }
+    
     public void darseBaja(Pasajero p){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar el origen de la suscripcion para darse de baja:");

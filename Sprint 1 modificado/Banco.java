@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Banco {
     private ArrayList<Tarjeta> tarjetas;
     private String nombre;
@@ -8,9 +10,7 @@ public class Banco {
     public void addTarjeta(Tarjeta tar){
         tarjetas.add(tar);
     }
-    public void verificarDatos(){
-        //verifica los datos de la tarjeta
-    }
+    
     public boolean cobrar(Tarjeta tar, double monto){
         for (int i = 0; i < tarjetas.size(); i++) {
             Tarjeta aux = tarjetas.get(i);
@@ -29,4 +29,12 @@ public class Banco {
         }
         return null;
     }
+	public boolean validar(int nroTarjeta) {
+		for(Tarjeta t: tarjetas) {
+			if (t.getNum()==nroTarjeta)
+				return true;
+		}
+		return false;
+			
+	}
 }
