@@ -68,17 +68,6 @@ public class Plataforma {
             this.addUsuario(p);
         }
     }
-    /* public void agregarTarjeta(Pasajero p){
-        Scanner s = new Scanner(System.in);
-        System.out.println("Ingresar numero de Tarjeta:"); int num = s.nextInt();
-        s.nextLine(); //descarta el salto de linea genereado por nextint
-        System.out.println("Ingresar marca: "); String marc = s.nextLine();
-        Tarjeta t = bancoAsociado.buscarTarjeta(num,marc);
-        if (t != null){
-            p.agregarTarjeta(t);
-        } else
-            System.out.println("No se ha encontrado la tarjeta");
-    }*/
 
     public ArrayList<Viaje> buscarPasaje() {
         Scanner s = new Scanner(System.in);
@@ -102,11 +91,7 @@ public class Plataforma {
             }
         }
         listarServicios(salida);
-        System.out.println(salida.size());
         return salida;
-    }
-    public int longEmpresas(){
-        return empresasConvenio.size() + empresas.size();
     }
 
     public void listarServicios(ArrayList<Viaje> salida){
@@ -136,7 +121,7 @@ public class Plataforma {
     }
     public Suscripcion existeSuscripcion(Viaje viaje){
         for(Suscripcion sus:suscripciones){
-            if ((sus.getOrigen() == viaje.getOrigen()) && (sus.getDestino() == viaje.getDestino()))
+            if ((sus.getOrigen().equals(viaje.getOrigen())) && (sus.getDestino().equals(viaje.getDestino())))
                 return sus;
         }
         return null;
