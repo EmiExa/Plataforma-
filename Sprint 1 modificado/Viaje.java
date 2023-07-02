@@ -63,9 +63,6 @@ public class Viaje {
         this.destino = destino;
     }
 
-    public void setCantAsientosDisponibles(int cantAsientosDisponibles) {
-        this.cantAsientosDisponibles = this.cantAsientosDisponibles - cantAsientosDisponibles;
-    }
     public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
@@ -85,5 +82,9 @@ public class Viaje {
     public String getInfo() {
         return " desde "+origen+" hasta "+destino+". "+fechaSalida;
     }
+
+	public void decrementarAsientosDisponibles(int cantidad) {
+		this.cantAsientosDisponibles = this.cantAsientosDisponibles - cantAsientosDisponibles;
+	}
 
 }
