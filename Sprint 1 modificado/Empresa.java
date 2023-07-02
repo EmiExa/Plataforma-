@@ -15,9 +15,11 @@ public class Empresa {
         viajesFuturos.add(viaje);
     }
     public ArrayList<Viaje> getViajes(){
-        return viajesFuturos;
+        return new ArrayList<>(viajesFuturos);
     }
-
+    public void addColectivo(Colectivo cole){
+        colectivos.add(cole);
+    }
     public ArrayList<Viaje>  buscarPasajes(LocalDate dia, String origen, String destino){
         ArrayList<Viaje> salida = new ArrayList<>();
         for(int i =0; i< viajesFuturos.size();i++){
