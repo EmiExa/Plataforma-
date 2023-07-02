@@ -15,5 +15,16 @@ public class Pasaje {
     public void imprimir() {
         System.out.println(" PASAJERO: "+pasajero.getNombre()+" "+pasajero.getApellido()+"\n"+viaje.getInfo()+".\n ASIENTO "+asiento+" - VALOR: "+valor+"\n");
     }
+      public int getAsiento() {
+        return asiento;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public Viaje getViaje() {
+        return viaje;
+    }
     
 }
