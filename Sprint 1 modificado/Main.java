@@ -5,6 +5,47 @@ import java.util.Scanner;
 
 public class Main {
 
+    public void cargarEmpresasEstatica(Plataforma p){
+        //Evita el menu de administrador para cargar las empresas mas rapido y poder probarlo.
+        
+        //CREACION EMPRESAS
+        Empresa e1 = new Empresa("El gorrion");
+        Empresa e2 = new Empresa("Langueyu");
+        Empresa e3 = new Empresa("Condor Estrella");
+        Empresa e4 = new Empresa("Plusmar");
+        Empresa e5 = new Empresa("Flechabus");
+        Empresa e6 = new Empresa("El Rapido");
+        
+        //CREACION COLECTIVOS
+        Colectivo c1 = new Colectivo(1,30,e1);
+        Colectivo c2 = new Colectivo(1,20,e4);
+            
+        //CREACION VIAJES
+        Viaje v1 = new Viaje("Tandil","MarDelPlata",30,c1,localDate.now(),1500);
+        Viaje v2 = new Viaje("Tandil","Azul",20,c2,localDate.now(),2000);
+        Viaje v3 = new Viaje("Tandil","Ayacucho",30,c1,localDate.now(),5000);
+        Viaje v4 = new Viaje("Tandil","Olavarria",20,c2,localDate.now(),1200);
+        Viaje v5 = new Viaje("Olavarria","Tandil",20,c1,localDate.now(),6000);
+
+        //AGREGO COLECTIVOS Y VIAJES A LAS EMPRESAS
+        e1.addColectivo(c1);
+        e1.addViaje(v1);
+        e1.addViaje(v3);
+        
+        e4.addColectivo(c2);
+        e4.addViaje(v2);
+        e4.addViaje(v4);
+        e4.addViaje(v5);
+            
+        //SE AGREGAN LAS EMPRESAS A LA PLATAFORMA
+        admin.addConvenio(e1, p);
+        admin.addConvenio(e2, p);
+        admin.addConvenio(e3, p);
+        admin.addConvenioAdherido(e4, p);
+        admin.addConvenioAdherido(e5, p);
+        admin.addConvenioAdherido(e6, p);
+    }
+    
     public void mostrarMenuPlataforma (Pasajero p, Plataforma nueve){
         int opcion = 0;
         while(opcion != 6){
