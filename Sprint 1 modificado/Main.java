@@ -21,7 +21,6 @@ public class Main {
         nueve.addEmpresaConv(viaTac);
         nueve.notificarViajesImprovisados();*/
         menuprueba.cargarEmpresasEstatica(nueve);
-        System.out.println(nueve.longEmpresas());
         menuprueba.menuSeleccion(nueve);
     }
 }
