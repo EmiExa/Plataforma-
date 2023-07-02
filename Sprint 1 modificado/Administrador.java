@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Administrador extends Usuario{
-    private static int colesMin = 5;
+    private static int colesMin = -1;
     private static String clave = "12345678Ab";
 
     public Administrador(String nombre, String apellido, int dni) {
