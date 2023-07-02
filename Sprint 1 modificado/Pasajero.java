@@ -25,12 +25,16 @@ public class Pasajero extends Usuario{
     }
 
     public void addTarjeta(Banco banco) {
+    	System.out.println("GENERAR NUEVA TARJETA: ");
         Scanner s = new Scanner(System.in);
         System.out.print(" Ingresar número de tarjeta: "); int nroTarjeta = s.nextInt();
         s.nextLine();
         String marca = "visa";
-        Tarjeta tarjeta = new Tarjeta(nroTarjeta,banco, marca);
-        this.tarjeta = tarjeta;
+        if (banco.validar(nroTarjeta)) {
+            Tarjeta tarjeta = new Tarjeta(nroTarjeta,banco, marca);
+            this.tarjeta = tarjeta;	
+            System.out.println("TARJETA GENERADA.");
+        }
     }
 
     private void cambiarClave(String contraseña){
@@ -50,6 +54,15 @@ public class Pasajero extends Usuario{
         }
         return suma;
     }
+
+    //public Arraylist<Pasaje> comprarPasaje(Viaje Viaje, int numeroPasajes){
+    //consulta si ese viaje tiene los asientos disponibles etc...
+    //realiza la transaccion autocompletado etc...
+    //genera los pasajes
+    //agrega el viaje a historial
+    //se fija si en el historial se repite el viaje mas de 3 veces
+    //Si no tiene una suscripcion a ese viaje(origen destino) se le notifica que se puede suscribir al viaje improvisado
+    //}
     public String getClave(){
         return clave;
     }
