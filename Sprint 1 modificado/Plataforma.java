@@ -131,16 +131,14 @@ public class Plataforma {
         for(EmpresaAdherida emp:empresasConvenio) {
             viajes.addAll(emp.chequearViajeimprovisados());
         }
+        System.out.println(viajes.size());
         for(int i = 0; i<viajes.size(); i++){
             Suscripcion sus = existeSuscripcion(viajes.get(i));
             if(sus != null){
-                sus.notificar(viajes.get(i));
+                sus.notificar();
             }
         }
     }
-    /*public void notificarPasajero(Pasajero p, Suscripcion s){
-        System.out.println("Te avisamos "+p.getNombre()+ " que el viaje que va de "+s.getOrigen()+" a "+s.getDestino()+" Esta con un descuento por viaje improvisado");
-    }*/
 
     private Pasaje generarPasaje(Viaje v) {
     	System.out.println("GENERANDO PASAJE -");
@@ -174,9 +172,6 @@ public class Plataforma {
 
     public void generarCompra(Viaje viaje, Pasajero comprador){
     	System.out.println(viaje.getOrigen());
-    	
-    	
-        //sugerirViajeImprovisado(viaje, comprador);
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar cantidad de pasajeros: ");
         int cantidad = s.nextInt();
@@ -193,9 +188,10 @@ public class Plataforma {
                 // Enviar mail de notificiacion
                 comprador.addPasajes(pasajes);
                 System.out.println("LA COMPRA FUE EXITOSA");
+                sugerirViajeImprovisado(viaje, comprador);
             }
-        }
-        
+            else System.out.println("LA COMPRA NO FUE EXITOSA");
+        } 
     }
     public void suscribirseViaje(Pasajero p){
         Scanner s = new Scanner(System.in);
@@ -205,22 +201,28 @@ public class Plataforma {
         String destino = s.nextLine();
         int i = 0;
         boolean encontrado = false;
-        while ((i<suscripciones.size())&&(encontrado = false)){
+        while ((i<suscripciones.size())&&(encontrado == false)){
             Suscripcion suscActual = suscripciones.get(i);
             if ((origen.equals(suscActual.getOrigen()))&&(destino.equals(suscActual.getDestino()))){
                 //Si existe una suscripcion de viaje con ese origen y destino se agrega el pasajero a esta.
                 suscActual.addPasajero(p);
                 encontrado = true;
+                System.out.println("La Suscripcion se realizo con exito");
             }
             i++;
         }
-        if ((encontrado = false)&&(origen != destino)){
+        if ((encontrado == false)&&(origen != destino)){
             Suscripcion sus = new Suscripcion(origen,destino);
             sus.addPasajero(p);
             suscripciones.add(sus);
+            encontrado=true;
+            System.out.println("La Suscripcion se realizo con exito");
         }
+        if(encontrado == false)
+            System.out.println("No se realizo la suscripcion con exito");
 
     }
+    
     public void darseBaja(Pasajero p){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar el origen de la suscripcion para darse de baja:");
