@@ -11,4 +11,8 @@ public class Colectivo {
     public int getAsientos() {
         return asientos;
     }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
 }
