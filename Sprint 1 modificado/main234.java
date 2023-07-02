@@ -30,6 +30,11 @@ public class main234 {
         Viaje v4 = new Viaje("Tandil", "Olavarria",  c2, LocalDateTime.now(), 1200.0);
         Viaje v5 = new Viaje("Olavarria", "Tandil", c1, LocalDateTime.now(), 6000.0);
 
+        //CARGA DE PASAJERO DEFAULT
+        Pasajero lu = new Pasajero("Lu","Delgado",1,"","1");
+        Pasajero vico = new Pasajero("Vico","Dibar",44870875,"","1");
+        Pasajero del = new Pasajero("Delfi","Ferreri",44377571,"","1");
+        
         //AGREGO COLECTIVOS Y VIAJES A LAS EMPRESAS
         e1.addColectivo(c1);
         e1.addViaje(v1);
@@ -39,27 +44,26 @@ public class main234 {
         e4.addViaje(v2);
         e4.addViaje(v4);
         e4.addViaje(v5);
-        // Carga desde la plataforma directamente
-        p.addEmpresa(e1);
-        p.addEmpresa(e2);
-        p.addEmpresa(e3);
-        p.addEmpresaConv(e4);
-        p.addEmpresaConv(e5);
-        p.addEmpresaConv(e6);
+        
+        //SE AGREGAN PASAJEROS
+        p.addUsuario(lu);
+        p.addUsuario(vico);
+        p.addUsuario(del);
+
         //SE AGREGAN LAS EMPRESAS A LA PLATAFORMA
-        /*admin.addConvenio(e1, p);
+        admin.addConvenio(e1, p);
         admin.addConvenio(e2, p);
         admin.addConvenio(e3, p);
         admin.addConvenioAdherido(e4, p);
         admin.addConvenioAdherido(e5, p);
-        admin.addConvenioAdherido(e6, p);*/
+        admin.addConvenioAdherido(e6, p);
     }
 
     public void mostrarMenuPlataforma (Pasajero p, Plataforma nueve){
         int opcion = 0;
         while(opcion != 6){
             System.out.println("MENU: ");
-            System.out.println("1.Buscar pasajes" + "\n 2.Rastreo" + "\n 3.Suscribirse a viaje improvisado" +"\n 4.Cancelar compra" + "\n 5.Baja de viaje improvisado" +"\n 6.Salir");
+            System.out.println(" 1.Buscar pasajes" + "\n 2.Rastreo" + "\n 3.Suscribirse a viaje improvisado" +"\n 4.Cancelar compra" + "\n 5.Baja de viaje improvisado" +"\n 6.Salir");
             Scanner s = new Scanner(System.in);
             System.out.println("Ingrese el numero de opcion que desea realizar");
             opcion = s.nextInt();
@@ -71,13 +75,14 @@ public class main234 {
                     //Elegir asiento
                     System.out.println("Desea comprar un pasaje? 1.SI 2.NO");
                     int realizaCompra = s.nextInt();
-                    if (realizaCompra == 1){
+                    if (realizaCompra == 1) {
                         System.out.println("Seleccione el numero de viaje que desea comprar:");
                         int op = s.nextInt();
+                        s.nextLine();
                         if ((op > -1) && (op < resultadoBusqueda.size())){
-                            nueve.generarCompra(resultadoBusqueda.get(op), p);
-                        }
-                    }
+                            nueve.generarCompra(resultadoBusqueda.get(op),p);
+                        } else System.out.println("OPCION INCORRECTA");
+                    } else System.out.println("OPCION INCORRECTA");
                     break;
                 case 2:
                     //Suscribirse a rastreo
@@ -101,7 +106,7 @@ public class main234 {
         int opcion = 0;
         while (opcion != 3){
             System.out.println("INICIO: ");
-            System.out.println("1.Loguearse" + "\n 2.Registrarse" + "\n 3.Salir");
+            System.out.println(" 1.Loguearse" + "\n 2.Registrarse" + "\n 3.Salir");
             System.out.println("Ingrese la opcion que desea realizar:");
             Scanner s = new Scanner(System.in);
             opcion = s.nextInt();
