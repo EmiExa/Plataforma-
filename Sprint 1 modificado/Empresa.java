@@ -6,7 +6,7 @@ public class Empresa {
     private String nombre;
     private ArrayList<Colectivo> colectivos;
     protected ArrayList<Viaje> viajesFuturos;
-    public Empresa(String nombre){
+    Empresa(String nombre){
         this.nombre = nombre;
         viajesFuturos = new ArrayList<Viaje>();
         colectivos = new ArrayList<Colectivo>();
@@ -15,16 +15,20 @@ public class Empresa {
         viajesFuturos.add(viaje);
     }
     public ArrayList<Viaje> getViajes(){
-        return new ArrayList<>(viajesFuturos);
+        return viajesFuturos;
     }
+
     public void addColectivo(Colectivo cole){
         colectivos.add(cole);
+    }
+    public int getCantColectivos(){
+        return colectivos.size();
     }
     public ArrayList<Viaje>  buscarPasajes(LocalDate dia, String origen, String destino){
         ArrayList<Viaje> salida = new ArrayList<>();
         for(int i =0; i< viajesFuturos.size();i++){
             Viaje viajeactual= viajesFuturos.get(i);
-            if ((viajeactual.getOrigen().equals(origen)) && (viajeactual.getDestino().equals(destino)) && (dia.isEqual(viajeactual.getFechaSalida().toLocalDate())) && (viajeactual.tieneDisponibilidad())) {
+            if ((origen.equals(viajeactual.getOrigen())) && (destino.equals(viajeactual.getDestino())) && (dia.compareTo(viajeactual.getFechaSalida())<=0) && (viajeactual.getCantAsientosDisponibles() > 0)) {
                 salida.add(viajeactual);
             }
         }
@@ -37,9 +41,5 @@ public class Empresa {
     }
     public String getNombre() {
         return nombre;
-    }
-
-    public int getCantColectivos(){
-        return colectivos.size();
     }
 }
