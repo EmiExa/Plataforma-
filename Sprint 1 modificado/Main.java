@@ -197,6 +197,7 @@ public class Main {
         nueve.registro();
         nueve.addEmpresaConv(viaTac);
         nueve.notificarViajesImprovisados();*/
-        MostrarMenuIngresar(nueve);
+        cargarEmpresasEstatica(nueve);
+        menuSeleccion(nueve);
     }
 }
