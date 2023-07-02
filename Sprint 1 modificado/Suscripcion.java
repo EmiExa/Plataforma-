@@ -1,4 +1,7 @@
-{
+import java.util.ArrayList;
+
+import java.util.*;
+public class Suscripcion {
     private String origen;
     private String destino;
     private ArrayList<Pasajero> pasajeros;
@@ -8,7 +11,8 @@
         this.pasajeros = new ArrayList<>();
     }
     public void addPasajero(Pasajero p){
-        pasajeros.add(p);
+        if(!pasajeros.contains(p))
+            pasajeros.add(p);
     }
     public void eliminarPasajero(Pasajero p){
         pasajeros.remove(p);
@@ -27,8 +31,9 @@
     public String getDestino(){
         return destino;
     }
-    public void notificar(Viaje v){
+    public void notificar(){
         for(Pasajero p:pasajeros){
+            System.out.println(p.getNombre());
             //para cada pasajero se le envia un mail con el viaje en descuento
         }
     }
