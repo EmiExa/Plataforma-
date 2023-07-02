@@ -88,25 +88,31 @@ public class Plataforma {
         String destino = s.nextLine();
         System.out.println("Ingresar Fecha: ");
         //convert String to LocalDate
-        String dateString= s.nextLine();
-        DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("d/MM/yyyy");
+        String dateString = s.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         LocalDate localDate = LocalDate.parse(dateString, formatter);
+        System.out.println(localDate);
 
-        ArrayList<Viaje> salida= new ArrayList<>();
+        ArrayList<Viaje> salida = new ArrayList<>();
         for (int i = 0; i < empresas.size(); i++) {
-            ArrayList<Viaje> viajes = empresas.get(i).buscarPasajes(localDate,origen,destino);
-            if (viajes != null){
+            ArrayList<Viaje> viajes = empresas.get(i).buscarPasajes(localDate, origen, destino);
+            if (viajes != null) {
                 salida.addAll(viajes);
             }
         }
         listarServicios(salida);
+        System.out.println(salida.size());
         return salida;
     }
+    public int longEmpresas(){
+        return empresasConvenio.size() + empresas.size();
+    }
+
     public void listarServicios(ArrayList<Viaje> salida){
         for (int i = 0; i < salida.size(); i++) {
             Viaje actual = salida.get(i);
-            System.out.println(i+")"+"Origen: "+actual.getOrigen()+","+"Destino:"+actual.getDestino()+","+ "Fecha: "+ actual.getFechaSalida()+"\n");
+            System.out.println(i+" )"+"Origen: "+actual.getOrigen()+","+"Destino:"+actual.getDestino()+","+ "Fecha: "+ actual.getFechaSalida()+"\n");
         }
     }
 
