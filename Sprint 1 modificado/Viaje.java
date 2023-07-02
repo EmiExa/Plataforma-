@@ -1,4 +1,5 @@
-import java.time.LocalDate;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class Viaje {
@@ -9,30 +10,27 @@ public class Viaje {
     private LocalDateTime fechaSalida;
     private Double monto;
 
-    public Viaje(String origen, String destino, Colectivo colectivo, LocalDateTime fechaSalida, Double monto, int horasRestantes) { //estabamos un toq complicados con el tema del Localdate
+    public Viaje(String origen, String destino, Colectivo colectivo, LocalDateTime fechaSalida, Double monto) { //estabamos un toq complicados con el tema del Localdate
         this.origen = origen;                                                                                                                               //entonces hicimos el horas restantes para parchearlo
         this.destino = destino;
         this.colectivo = colectivo;
         this.cantAsientosDisponibles = this.colectivo.getAsientos();
         this.fechaSalida = fechaSalida;
         this.monto = monto;
-        this.horasRestantes = horasRestantes;
-        this.pasajesVendidos = new ArrayList<Pasaje>();
     }
-    
+
     public boolean esImprovisado( int horas, int lugares){
-        int horasRestantes = (LocalDateTime.now().until(fechaSalida)).get(ChronoUnits.HOURS);
-        if((horasRestantes <= horas) && (cantAsientosDisponibles <= lugares))
+        LocalDateTime equisHorasAntes = fechaSalida.minus(((EmpresaAdherida)colectivo.getEmpresa()).getHorasRestantes(),ChronoUnit.HOURS);
+        if((equisHorasAntes.isBefore(LocalDateTime.now())) && (cantAsientosDisponibles <= lugares))
             return true;
         else
             return false;
     }
 
 
-    
+
     public void addPasajero(Pasaje pas){
         if(cantAsientosDisponibles>0) {
-            this.pasajesVendidos.add(pas);
             this.cantAsientosDisponibles--;
         }
     }
@@ -50,7 +48,7 @@ public class Viaje {
     }
 
     public LocalDate getFechaSalida() {
-        return fechaSalida;
+        return fechaSalida.toLocalDate();
     }
 
     public Double getMonto() {
@@ -68,7 +66,7 @@ public class Viaje {
     public void setCantAsientosDisponibles(int cantAsientosDisponibles) {
         this.cantAsientosDisponibles = this.cantAsientosDisponibles - cantAsientosDisponibles;
     }
-    public void setFechaSalida(LocalDate fechaSalida) {
+    public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
@@ -79,7 +77,7 @@ public class Viaje {
     public boolean tieneDisponibilidad() {
         return this.cantAsientosDisponibles > 0;
     }
-    
+
     public boolean tieneDisponibilidad(int cantidad){
         return  this.cantAsientosDisponibles >= cantidad;
     }
