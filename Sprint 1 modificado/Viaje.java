@@ -6,6 +6,7 @@ public class Viaje {
     private String origen;
     private String destino;
     private int cantAsientosDisponibles;
+    private int horasRestantes;
     private Colectivo colectivo;
     private LocalDateTime fechaSalida;
     private Double monto;
@@ -17,11 +18,13 @@ public class Viaje {
         this.cantAsientosDisponibles = this.colectivo.getAsientos();
         this.fechaSalida = fechaSalida;
         this.monto = monto;
+        this.horasRestantes = 1;
     }
 
     public boolean esImprovisado( int horas, int lugares){
-        LocalDateTime equisHorasAntes = fechaSalida.minus(((EmpresaAdherida)colectivo.getEmpresa()).getHorasRestantes(),ChronoUnit.HOURS);
-        if((equisHorasAntes.isBefore(LocalDateTime.now())) && (cantAsientosDisponibles <= lugares))
+        //LocalDateTime equisHorasAntes = fechaSalida.minus(((EmpresaAdherida)colectivo.getEmpresa()).getHorasRestantes(),ChronoUnit.HOURS);
+        //if((equisHorasAntes.isBefore(LocalDateTime.now())) && (cantAsientosDisponibles <= lugares))
+        if((horas > horasRestantes) &&(cantAsientosDisponibles < lugares))
             return true;
         else
             return false;
@@ -63,6 +66,9 @@ public class Viaje {
         this.destino = destino;
     }
 
+    public void decrementarAsientosDisponibles(int cantidad){
+        this.cantAsientosDisponibles -= cantidad;
+    }
     public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
@@ -82,9 +88,5 @@ public class Viaje {
     public String getInfo() {
         return " desde "+origen+" hasta "+destino+". "+fechaSalida;
     }
-
-	public void decrementarAsientosDisponibles(int cantidad) {
-		this.cantAsientosDisponibles = this.cantAsientosDisponibles - cantAsientosDisponibles;
-	}
 
 }
