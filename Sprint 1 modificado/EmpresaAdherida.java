@@ -10,16 +10,19 @@ public class EmpresaAdherida extends Empresa{
         horasRestantes= horas;
         lugaresDisponibles = lugares;
     }
-    public ArrayList<Suscripcion> chequearViajeimprovisados(){
-        ArrayList<Suscripcion> viajesimprovisados = new ArrayList<>();
+    public ArrayList<Viaje> chequearViajeimprovisados(){
+        ArrayList<Viaje> viajesimprovisados = new ArrayList<>();
         for(int i= 0; i < viajesFuturos.size(); i++) {
             Viaje viaje = viajesFuturos.get(i);
             if (viaje.esImprovisado(horasRestantes,lugaresDisponibles)) {
-                viaje.setMonto(viaje.getMonto() - (viaje.getMonto()*descuento));
-                Suscripcion s = new Suscripcion(viaje.getOrigen(), viaje.getDestino());
-                viajesimprovisados.add(s);
+                viaje.setMonto(viaje.getMonto() - viaje.getMonto() * descuento);
+                viajesimprovisados.add(viaje);
             }
         }
         return viajesimprovisados;
+    }
+
+    public int getHorasRestantes() {
+        return horasRestantes;
     }
 }
