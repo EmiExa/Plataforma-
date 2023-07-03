@@ -25,4 +25,7 @@ public class EmpresaAdherida extends Empresa{
     public int getHorasRestantes() {
         return horasRestantes;
     }
+    public double getDescuento() {
+        return descuento;
+    }
 }
