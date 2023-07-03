@@ -59,8 +59,8 @@ public class Pasajero extends Usuario{
     public String getClave(){
         return clave;
     }
-    public boolean equals(Pasajero p){
-        if((super.getDni() == p.getDni()) && (this.getClave().equals( p.getClave())))
+    public boolean equals(Object o){
+        if((super.getDni() == ((Pasajero)o).getDni()) && (this.getClave().equals(((Pasajero)o).getClave())))
             return true;
         return false;
     }
