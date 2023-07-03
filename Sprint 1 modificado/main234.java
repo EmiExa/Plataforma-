@@ -15,9 +15,9 @@ public class main234 {
         Empresa e1 = new Empresa("El gorrion");
         Empresa e2 = new Empresa("Langueyu");
         Empresa e3 = new Empresa("Condor Estrella");
-        EmpresaAdherida e4 = new EmpresaAdherida("Plusmar",0.5,10,50);
-        EmpresaAdherida e5 = new EmpresaAdherida("Flechabus",0.4,10,50);
-        EmpresaAdherida e6 = new EmpresaAdherida("El Rapido",0.8,10,50);
+        EmpresaAdherida e4 = new EmpresaAdherida("Plusmar",0.5,10,5);
+        EmpresaAdherida e5 = new EmpresaAdherida("Flechabus",0.4,10,5);
+        EmpresaAdherida e6 = new EmpresaAdherida("El Rapido",0.8,10,5);
 
         //CREACION COLECTIVOS
         Colectivo c1 = new Colectivo(1, 5, e1);
@@ -28,14 +28,14 @@ public class main234 {
         Viaje v2 = new Viaje("Tandil", "Azul",c2, LocalDateTime.now(), 2000.0);
         Viaje v3 = new Viaje("Tandil", "Ayacucho",  c1, LocalDateTime.now(), 5000.0);
         Viaje v4 = new Viaje("Tandil", "Olavarria",  c2, LocalDateTime.now(), 1200.0);
-        Viaje v5 = new Viaje("Olavarria", "Tandil", c1, LocalDateTime.now(), 6000.0);
+        Viaje v5 = new Viaje("Olavarria", "Tandil", c2, LocalDateTime.now(), 6000.0);
         LocalDateTime salida = LocalDateTime.of(LocalDate.now(),LocalTime.now().plusHours(3));
         Viaje v6 = new Viaje("Olavarria", "CABA",  c2, salida, 1500.0);
 
         //CARGA DE PASAJERO DEFAULT
         Pasajero lu = new Pasajero("Lu","Delgado",1,"","1");
-        Pasajero vico = new Pasajero("Vico","Dibar",44870875,"","1");
-        Pasajero del = new Pasajero("Delfi","Ferreri",44377571,"","1");
+        Pasajero vico = new Pasajero("Vico","Dibar",2,"","1");
+        Pasajero del = new Pasajero("Delfi","Ferreri",2,"","1");
         
         //AGREGO COLECTIVOS Y VIAJES A LAS EMPRESAS
         e1.addColectivo(c1);
@@ -179,7 +179,7 @@ public class main234 {
                 if (opcion != 3){
                     System.out.println("La opcion ingresada es incorrecta vuelva a intentar");
                 }
-            } else if (realizaCompra!=2)
+            } else 
                 System.out.println("El usuario ingresado es incorrecto vuelva a intentar");
         }
     }
