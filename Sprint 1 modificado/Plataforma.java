@@ -193,7 +193,7 @@ public class Plataforma {
             System.out.println(" Notamos que realiza este viaje con frecuencia.\n¿Desea suscribirse al servicio de viaje improvisado para esta ruta?");
             System.out.print(" Ingresar 1 (si) o 0 (no): ");
             if (s.nextInt()==1)
-                suscribirseViaje(comprador);
+                suscribirseViaje(comprador,viaje.getOrigen(),viaje.getDestino());
         }
     }
 
