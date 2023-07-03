@@ -179,7 +179,7 @@ public class main234 {
                 if (opcion != 3){
                     System.out.println("La opcion ingresada es incorrecta vuelva a intentar");
                 }
-            } else
+            } else if (realizaCompra!=2)
                 System.out.println("El usuario ingresado es incorrecto vuelva a intentar");
         }
     }
