@@ -4,7 +4,7 @@ public class Main {
         Plataforma nueve = new Plataforma(banco);
         Tarjeta tarjeta = new Tarjeta(12,banco,"black");
         banco.addTarjeta(tarjeta);
-        main234 menuprueba = new main234();
+        Menu menuprueba = new Menu();
         /*  //Creacion Pasajero
         Banco banco = new Banco("santander");
         Pasajero pia = new Pasajero("pia","Bedini", 12345678, tarjeta,"piabedini@gmail.com", "abc123");
