@@ -9,15 +9,15 @@ public class main234 {
     }
 
     public void cargarEmpresasEstatica(Plataforma p) {
-       //Evita el menu de administrador para cargar las empresas mas rapido y poder probarlo.
-        Administrador admin = new Administrador("Pia","Bedini",12345);
+        //Evita el menu de administrador para cargar las empresas mas rapido y poder probarlo.
+        Administrador admin = new Administrador("Pia","Benediti",12345);
         //CREACION EMPRESAS
         Empresa e1 = new Empresa("El gorrion");
         Empresa e2 = new Empresa("Langueyu");
         Empresa e3 = new Empresa("Condor Estrella");
-        EmpresaAdherida e4 = new EmpresaAdherida("Plusmar",0.5,10,5);
-        EmpresaAdherida e5 = new EmpresaAdherida("Flechabus",0.4,10,5);
-        EmpresaAdherida e6 = new EmpresaAdherida("El Rapido",0.8,10,5);
+        EmpresaAdherida e4 = new EmpresaAdherida("Plusmar",0.5,1,6);
+        EmpresaAdherida e5 = new EmpresaAdherida("Flechabus",0.4,1,6);
+        EmpresaAdherida e6 = new EmpresaAdherida("El Rapido",0.8,1,6);
 
         //CREACION COLECTIVOS
         Colectivo c1 = new Colectivo(1, 5, e1);
@@ -27,16 +27,18 @@ public class main234 {
         Viaje v1 = new Viaje("Tandil", "MarDelPlata",  c1, LocalDateTime.now(), 1500.0);
         Viaje v2 = new Viaje("Tandil", "Azul",c2, LocalDateTime.now(), 2000.0);
         Viaje v3 = new Viaje("Tandil", "Ayacucho",  c1, LocalDateTime.now(), 5000.0);
-        Viaje v4 = new Viaje("Tandil", "Olavarria",  c2, LocalDateTime.now(), 1200.0);
+        LocalDateTime salida1 = LocalDateTime.of(LocalDate.now(),LocalTime.now().plusHours(1));
+        Viaje v4 = new Viaje("Tandil", "Olavarria",  c2, salida1, 1200.0);
         Viaje v5 = new Viaje("Olavarria", "Tandil", c2, LocalDateTime.now(), 6000.0);
         LocalDateTime salida = LocalDateTime.of(LocalDate.now(),LocalTime.now().plusHours(3));
         Viaje v6 = new Viaje("Olavarria", "CABA",  c2, salida, 1500.0);
 
+
         //CARGA DE PASAJERO DEFAULT
         Pasajero lu = new Pasajero("Lu","Delgado",1,"","1");
         Pasajero vico = new Pasajero("Vico","Dibar",2,"","1");
-        Pasajero del = new Pasajero("Delfi","Ferreri",2,"","1");
-        
+        Pasajero del = new Pasajero("Delfi","Ferreri",3,"","1");
+
         //AGREGO COLECTIVOS Y VIAJES A LAS EMPRESAS
         e1.addColectivo(c1);
         e1.addViaje(v1);
@@ -47,7 +49,7 @@ public class main234 {
         e4.addViaje(v4);
         e4.addViaje(v5);
         e4.addViaje(v6);
-        
+
         //SE AGREGAN PASAJEROS
         p.addUsuario(lu);
         p.addUsuario(vico);
@@ -61,7 +63,7 @@ public class main234 {
         admin.addConvenioAdherido(e5, p);
         admin.addConvenioAdherido(e6, p);
     }
-
+    
     public void mostrarMenuPlataforma (Pasajero p, Plataforma nueve){
         int opcion = 0;
         while(opcion != 6){
