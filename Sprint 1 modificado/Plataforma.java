@@ -220,12 +220,18 @@ public class Plataforma {
             }
             if (!tarjetaValida)
             	System.out.println("ERROR: la tarjeta ingresada no fue validada por el banco.\n");
-            else if (tarjetaValida && bancoAsociado.cobrar(comprador.getTarjeta(),viaje.getMonto()*cantidad)) {
-                // Enviar mail de notificiacion
-                comprador.addPasajes(pasajes);
-                System.out.println("El banco ha autorizado el pago: LA COMPRA FUE EXITOSA.\n");
-                sugerirViajeImprovisado(viaje, comprador);
-            } else System.out.println("El banco NO ha autorizado el pago: LA COMPRA NO FUE EXITOSA.\n");
+            else{
+                System.out.println("Esta seguro que que desea comprar "+ cantidad +" pasajes" +viaje.getInfo() + " con la tarjeta " + comprador.getTarjeta().getNum() +" "+ comprador.getTarjeta().getMarca());
+                System.out.println("1)Si 2)No");
+                int opc = s.nextInt();
+                if(opc == 1)
+                if(bancoAsociado.cobrar(comprador.getTarjeta(),viaje.getMonto()*cantidad)){
+                    // Enviar mail de notificiacion
+                    comprador.addPasajes(pasajes);
+                    System.out.println("El banco ha autorizado el pago: LA COMPRA FUE EXITOSA.\n");
+                    sugerirViajeImprovisado(viaje, comprador);
+                } else System.out.println("El banco NO ha autorizado el pago: LA COMPRA NO FUE EXITOSA.\n");
+            }
         } else System.out.println("ERROR: el viaje seleccionado no cuenta con dicha disponibilidad.\n");
     }
     
