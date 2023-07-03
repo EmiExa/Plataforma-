@@ -159,7 +159,6 @@ public class Plataforma {
         for(EmpresaAdherida emp:empresasConvenio) {
             viajes.addAll(emp.chequearViajeimprovisados());
         }
-        System.out.println(viajes.size());
         for(int i = 0; i<viajes.size(); i++){
             Suscripcion sus = existeSuscripcion(viajes.get(i));
             if(sus != null){
