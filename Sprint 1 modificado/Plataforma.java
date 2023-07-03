@@ -130,14 +130,13 @@ public class Plataforma {
         listarServicios(salida);
         return salida;
     }
-
+    
     public void listarServicios(ArrayList<Viaje> salida){
         for (int i = 0; i < salida.size(); i++) {
             Viaje actual = salida.get(i);
-            System.out.println(i+" )"+"Origen: "+actual.getOrigen()+","+"Destino:"+actual.getDestino()+","+ "Fecha: "+ actual.getFechaSalida()+"\n");
+            System.out.println(i+". Empresa "+actual.getEmpresa()+". Fecha de salida: "+ actual.getFechaSalida()+" a las "+actual.getHorarioSalida()+". "+actual.getCantAsientosDisponibles()+" lugares disponibles!\n");
         }
     }
-
 
     public void addUsuario(Usuario u){
         usuarios.add(u);
