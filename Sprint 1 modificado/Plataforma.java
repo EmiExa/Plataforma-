@@ -198,12 +198,7 @@ public class Plataforma {
             else System.out.println("LA COMPRA NO FUE EXITOSA");
         } 
     }
-    public void suscribirseViaje(Pasajero p){
-        Scanner s = new Scanner(System.in);
-        System.out.println("Ingresar el origen al que se quiere suscribir:");
-        String origen = s.nextLine();
-        System.out.println("Ingresar el destino al que se quiere suscribir:");
-        String destino = s.nextLine();
+    public void suscribirseViaje(Pasajero p, String origen, String destino){
         int i = 0;
         boolean encontrado = false;
         while ((i<suscripciones.size())&&(encontrado == false)){
@@ -228,6 +223,15 @@ public class Plataforma {
 
     }
     
+    public void suscribirseViaje(Pasajero p) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Ingresar el origen al que se quiere suscribir:");
+        String origen = s.nextLine();
+        System.out.println("Ingresar el destino al que se quiere suscribir:");
+        String destino = s.nextLine();
+        suscribirseViaje(p,origen,destino);
+    }
+
     public void darseBaja(Pasajero p){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar el origen de la suscripcion para darse de baja:");
