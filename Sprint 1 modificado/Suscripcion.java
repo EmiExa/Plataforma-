@@ -28,6 +28,9 @@ public class Suscripcion {
     public String getOrigen(){
         return origen;
     }
+    public String getDestino(){
+        return destino;
+    }
     public void notificar(Viaje v){
         for(Pasajero p:pasajeros){
             System.out.println();
