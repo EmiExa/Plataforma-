@@ -2,10 +2,10 @@ public class Pasaje {
 
     private Pasajero pasajero;
     private int asiento;
-    private Double valor;
+    private double valor;
     private Viaje viaje;
     
-    public Pasaje(Pasajero pasajero, Viaje viaje, int asiento, Double costo) {
+    public Pasaje(Pasajero pasajero, Viaje viaje, int asiento, double costo) {
         this.pasajero = pasajero;
         this.asiento = asiento;
         this.viaje = viaje;
@@ -19,7 +19,7 @@ public class Pasaje {
         return asiento;
     }
 
-    public Double getValor() {
+    public double getValor() {
         return valor;
     }
 
