@@ -204,7 +204,7 @@ public class Plataforma {
                 sugerirViajeImprovisado(viaje, comprador);
             }
             else System.out.println("LA COMPRA NO FUE EXITOSA");
-        } 
+        }  else System.out.println("ERROR: el viaje seleccionado no cuenta con dicha disponibilidad.");
     }
     public void suscribirseViaje(Pasajero p, String origen, String destino){
         int i = 0;
