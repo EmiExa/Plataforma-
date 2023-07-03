@@ -22,22 +22,30 @@ public class Plataforma {
         bancoAsociado = banco;
     }
 
-
+    private Usuario existeUsuario(int dni) {
+    	for (Usuario u: usuarios)
+    		if (u.getDni()==dni)
+    			return u;
+    	return null;
+    }
+    
     public Usuario login(){
         Scanner s = new Scanner(System.in);
-        System.out.println("Ingresar dni: "); int dni = s.nextInt();
+        System.out.println("Ingresar DNI: "); int dni = s.nextInt();
         s.nextLine(); //descarta el salto de linea genereado por nextint
         System.out.println("Ingresar clave: "); String clave = s.nextLine();
-        for(int i=0; i<usuarios.size();i++){
-            Usuario u = usuarios.get(i);
-            if ((u.getDni() == dni) && (u.getClave().equals(clave))){
-                System.out.println("Has ingresado a la plataforma 9 3/4");
-                return u;
+        Usuario u = existeUsuario(dni);
+        if (u!=null) {
+            if ((u.getClave().equals(clave)))
+                System.out.println("Has ingresado correctamente a Plataforma 9 3/4");
+            else {
+            	System.out.println("Tu DNI o clave son incorrectos.");
+            	u = null;
             }
-            System.out.println("Tu dni o contraseña son incorrectos");
-        }
-        return null;
+        } else System.out.println("Tu DNI o clave son incorrectos.");
+        return u;	
     }
+    
     public void darBajaEmpresa(Empresa empresa){
         //Buscamos en ambas listas Empresa o en empresa adherida en caso de que este en alguna de las 2 las damos de baja.
     }
