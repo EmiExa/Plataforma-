@@ -15,7 +15,8 @@ public class Suscripcion {
             pasajeros.add(p);
     }
     public void eliminarPasajero(Pasajero p){
-        pasajeros.remove(p);
+        if (!pasajeros.contains(p))
+            pasajeros.remove(p);
     }
     public boolean equals(Object s){
         if (s instanceof Suscripcion) {
