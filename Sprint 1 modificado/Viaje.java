@@ -92,8 +92,8 @@ public class Viaje {
 		return colectivo.getEmpresa().getNombre();
 	}
 
-	public LocalTime getHorarioSalida() {
-		return fechaSalida.toLocalTime();
+	public String getHorarioSalida() {
+		return fechaSalida.toLocalTime().toString().substring(0,5);
 	}
 
 }
