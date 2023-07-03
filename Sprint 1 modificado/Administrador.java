@@ -26,9 +26,6 @@ public class Administrador extends Usuario{
     public void eliminarEmpresa(Empresa convenio,Plataforma plataforma){
         plataforma.darBajaEmpresa(convenio);
     }
-    public void verEstadisticas(){
-        //Queda para implementar
-    }
     public Hashtable generarResumen(){
         Hashtable resumen = new Hashtable<>();
         return resumen;
