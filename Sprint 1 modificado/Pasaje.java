@@ -26,6 +26,9 @@ public class Pasaje {
     public Viaje getViaje() {
         return viaje;
     }
+    public Pasajero getPasajero(){
+	return pasajero;
+    }
 
     public boolean equals(Object o) {
 		System.out.println(pasajero.getDni() + "  " + ((Pasaje)o).getPasajero().getDni());
