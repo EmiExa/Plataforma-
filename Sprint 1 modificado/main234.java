@@ -87,7 +87,7 @@ public class main234 {
                             } 
                             else System.out.println("OPCION INCORRECTA");
                         } 
-                        else System.out.println("OPCION INCORRECTA");
+                        else if (realizaCompra!=2) System.out.println("OPCION INCORRECTA");
                     }
                     else
                         System.out.println("No hay ningun viaje con los parametros ingresados");
