@@ -29,6 +29,8 @@ public class main234 {
         Viaje v3 = new Viaje("Tandil", "Ayacucho",  c1, LocalDateTime.now(), 5000.0);
         Viaje v4 = new Viaje("Tandil", "Olavarria",  c2, LocalDateTime.now(), 1200.0);
         Viaje v5 = new Viaje("Olavarria", "Tandil", c1, LocalDateTime.now(), 6000.0);
+        LocalDateTime salida = LocalDateTime.of(LocalDate.now(),LocalTime.now().plusHours(3));
+        Viaje v6 = new Viaje("Olavarria", "CABA",  c1, salida, 1500.0);
 
         //CARGA DE PASAJERO DEFAULT
         Pasajero lu = new Pasajero("Lu","Delgado",1,"","1");
@@ -44,6 +46,7 @@ public class main234 {
         e4.addViaje(v2);
         e4.addViaje(v4);
         e4.addViaje(v5);
+        e4.addViaje(v6);
         
         //SE AGREGAN PASAJEROS
         p.addUsuario(lu);
