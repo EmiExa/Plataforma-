@@ -163,7 +163,7 @@ public class Plataforma {
         for(int i = 0; i<viajes.size(); i++){
             Suscripcion sus = existeSuscripcion(viajes.get(i));
             if(sus != null){
-                sus.notificar();
+                sus.notificar(viajes.get(i));
             }
         }
     }
@@ -272,7 +272,7 @@ public class Plataforma {
         String destino = s.nextLine();
         int i = 0;
         boolean encontrado = false;
-        while ((i<suscripciones.size())&&(encontrado = false)){
+        while ((i<suscripciones.size())&&(encontrado == false)){
             Suscripcion suscActual = suscripciones.get(i);
             if ((origen.equals(suscActual.getOrigen()))&&(destino.equals(suscActual.getDestino()))){
                 suscActual.eliminarPasajero(p);
