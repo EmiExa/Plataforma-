@@ -161,7 +161,7 @@ public class Plataforma {
         System.out.println("Ingrese su dni: " +"\n");
         int dni = s.nextInt();
         s.nextLine();
-        Usuario p = this.buscaPasajero(dni);
+        Usuario p = this.getUsuario(dni);
         if (p == null) {
             System.out.print("Ingrese el nombre del pasajero: " +"\n");
             String nombre = s.nextLine(); s.nextLine();
