@@ -142,7 +142,7 @@ public class Plataforma {
         if (!empresasConvenio.contains(emp))
             empresasConvenio.add(emp);
     }
-    public void agregarConvenio(Empresa emp, Double descuento, int horaMin, int asientosMin ){
+    public void agregarConvenio(Empresa emp, double descuento, int horaMin, int asientosMin ){
         EmpresaAdherida empresa = new EmpresaAdherida(emp.getNombre(), descuento, horaMin, asientosMin);
         empresas.remove(emp);
         empresasConvenio.add(empresa);
