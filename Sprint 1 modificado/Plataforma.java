@@ -75,7 +75,7 @@ public class Plataforma {
                 p.addTarjeta(bancoAsociado);
             System.out.println("Te has registrado con exito!!");
             this.addUsuario(p);
-        }
+        }  else System.out.println("ERROR: ya existe un usuario registrado con ese DNI.");
     }
 
     public ArrayList<Viaje> buscarPasaje() {
