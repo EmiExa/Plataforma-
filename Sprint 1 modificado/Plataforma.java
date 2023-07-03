@@ -203,8 +203,15 @@ public class Plataforma {
         int cantidad = s.nextInt();
         if (viaje.tieneDisponibilidad(cantidad)) {
             ArrayList<Pasaje> pasajes = new ArrayList<>();
-            for (int i = 0; i < cantidad; i++)
-                pasajes.add(generarPasaje(viaje,i+1));
+            for (int i = 0; i < cantidad; i++) {
+            	Pasaje pasaje = generarPasaje(viaje, i+1);
+            	if(!pasajes.contains(pasaje))
+            		pasajes.add(pasaje);
+            	else {
+            		System.out.println("No se pudo realizar la compra debido a que ese dni ya fue usado, ingrese un dni valido");
+            		i--;
+            	}
+            }
             viaje.decrementarAsientosDisponibles(cantidad);
             // Gestión del pago:
             // ignoramos pago con creditos
