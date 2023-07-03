@@ -31,11 +31,10 @@ public class Suscripcion {
     public String getDestino(){
         return destino;
     }
-    public void notificar(Viaje v){
+   public void notificar(Viaje v){
         for(Pasajero p:pasajeros){
-            System.out.println();
             System.out.println(p.getNombre() + " le avisamos que se encuentra un viaje disponible desde "+ this.origen +" hasta "
-                    + this.destino + " con un valor de: " + (v.getMonto() - v.getMonto() * v.getDescuentoEmpresa()));
+                    + this.destino + " con un valor de: " + v.getMonto());
             //para cada pasajero se le envia un mail con el viaje en descuento
         }
     }
