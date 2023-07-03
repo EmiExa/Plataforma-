@@ -10,7 +10,7 @@ public class main234 {
 
     public void cargarEmpresasEstatica(Plataforma p) {
        //Evita el menu de administrador para cargar las empresas mas rapido y poder probarlo.
-        Administrador admin = new Administrador("Pia","Benediti",12345);
+        Administrador admin = new Administrador("Pia","Bedini",12345);
         //CREACION EMPRESAS
         Empresa e1 = new Empresa("El gorrion");
         Empresa e2 = new Empresa("Langueyu");
