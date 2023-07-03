@@ -21,10 +21,9 @@ public class Viaje {
         this.horasRestantes = 1;
     }
 
-    public boolean esImprovisado( int horas, int lugares){
-        //LocalDateTime equisHorasAntes = fechaSalida.minus(((EmpresaAdherida)colectivo.getEmpresa()).getHorasRestantes(),ChronoUnit.HOURS);
-        //if((equisHorasAntes.isBefore(LocalDateTime.now())) && (cantAsientosDisponibles <= lugares))
-        if((horas > horasRestantes) &&(cantAsientosDisponibles < lugares))
+    public boolean esImprovisado(int horasRestantes, int lugares) {
+    	LocalDateTime ahora = LocalDateTime.now();
+        if ((fechaSalida.minus(horasRestantes,ChronoUnit.HOURS)).compareTo(ahora)<=0 && (cantAsientosDisponibles < lugares))
             return true;
         else
             return false;
