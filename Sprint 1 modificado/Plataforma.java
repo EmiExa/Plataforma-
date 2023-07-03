@@ -58,6 +58,28 @@ public class Plataforma {
         return null;
     }
 
+        public String crearClave(){
+        Scanner s = new Scanner(System.in);
+        String clave = "a";
+        boolean valida = false;
+        while(!valida) {
+            System.out.println("Ingrese su clave de al menos 8 digitos, teniendo al menos un caracter en minuscula, uno en mayusucula y al menos un numero");
+            clave = s.nextLine();
+            if (clave.length() > 7) {
+                if (!clave.equals(clave.toLowerCase())) {
+                    if (!clave.equals(clave.toUpperCase())) {
+                        int i = 0;
+                        while ((i < clave.length()) && (Character.isDigit(clave.charAt(i)))) {
+                            i++;
+                        }
+                        if (i < clave.length())
+                            valida = true;
+                    }
+                }
+            }
+        }
+            return clave;
+    }
     public void registro(){
         Scanner s = new Scanner(System.in);
         System.out.println("Ingresar nombre: "); String nombre = s.nextLine();
@@ -65,7 +87,7 @@ public class Plataforma {
         System.out.println("Ingresar dni: "); int dni = s.nextInt();
         s.nextLine(); //descarta el salto de linea genereado por nextint
         System.out.println("Ingresar Email: "); String email = s.nextLine();
-        System.out.println("Ingresar clave: "); String clave = s.nextLine();
+        String clave = this.crearClave();
         if (getUsuario(dni) == null){
             Pasajero p = new Pasajero(nombre,apellido,dni,email,clave);
             System.out.println("Quiere asociar una tarjeta de credito?");
