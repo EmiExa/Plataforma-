@@ -164,9 +164,9 @@ public class Plataforma {
         Usuario p = this.getUsuario(dni);
         if (p == null) {
             System.out.print("Ingrese el nombre del pasajero: " +"\n");
-            String nombre = s.nextLine(); s.nextLine();
+            String nombre = s.nextLine();
             System.out.print("Ingrese el apellido del pasajero: " +"\n");
-            String apellido = s.nextLine(); s.nextLine();
+            String apellido = s.nextLine();
             p = new Pasajero(nombre,apellido,dni,"","");
         }
         Pasaje pasaje = new Pasaje((Pasajero)p,v,0,v.getMonto());
