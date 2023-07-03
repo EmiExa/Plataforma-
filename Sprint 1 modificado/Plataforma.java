@@ -126,6 +126,7 @@ public class Plataforma {
                 salida.addAll(viajes);
             }
         }
+        System.out.println("Viajes disponibles de "+origen.toUpperCase()+" a "+destino.toUpperCase()+":");
         listarServicios(salida);
         return salida;
     }
