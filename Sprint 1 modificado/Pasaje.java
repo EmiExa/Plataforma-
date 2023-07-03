@@ -31,7 +31,6 @@ public class Pasaje {
     }
 
     public boolean equals(Object o) {
-		System.out.println(pasajero.getDni() + "  " + ((Pasaje)o).getPasajero().getDni());
     	if ((pasajero.getDni() == ((Pasaje)o).getPasajero().getDni()))
     		return true;
     	return false;
