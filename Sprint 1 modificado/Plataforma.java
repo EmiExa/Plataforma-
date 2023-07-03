@@ -274,9 +274,9 @@ public class Plataforma {
         while ((i<suscripciones.size())&&(encontrado == false)){
             Suscripcion suscActual = suscripciones.get(i);
             if ((origen.equals(suscActual.getOrigen()))&&(destino.equals(suscActual.getDestino()))){
-                suscActual.eliminarPasajero(p);
-                encontrado = true;
-                System.out.println("Se dio de baja correctamente");
+                encontrado = suscActual.eliminarPasajero(p);
+                if (encontrado)
+                    System.out.println("Se dio de baja correctamente");
             }
             i++;
         }
