@@ -191,7 +191,7 @@ public class Plataforma {
         if (viaje.tieneDisponibilidad(cantidad)) {
             ArrayList<Pasaje> pasajes = new ArrayList<>();
             for (int i = 0; i < cantidad; i++)
-                pasajes.add(generarPasaje(viaje));
+                pasajes.add(generarPasaje(viaje,i+1));
             viaje.setCantAsientosDisponibles(cantidad);
             // Gestión del pago:
             // ignoramos pago con creditos
