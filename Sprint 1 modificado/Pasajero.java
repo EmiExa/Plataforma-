@@ -24,17 +24,18 @@ public class Pasajero extends Usuario{
         historialPasajes.addAll(pasajes);
     }
 
-    public void addTarjeta(Banco banco) {
+    public boolean addTarjeta(Banco banco) {
     	System.out.println("GENERAR NUEVA TARJETA: ");
         Scanner s = new Scanner(System.in);
         System.out.print(" Ingresar número de tarjeta: "); int nroTarjeta = s.nextInt();
         s.nextLine();
-        String marca = "visa";
+        String marca = "VISA";
         if (banco.validar(nroTarjeta)) {
             Tarjeta tarjeta = new Tarjeta(nroTarjeta,banco, marca);
             this.tarjeta = tarjeta;	
             System.out.println("TARJETA GENERADA.");
-        }
+            return true;
+        } else return false;
     }
 
     private void cambiarClave(String contraseña){
