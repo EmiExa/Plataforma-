@@ -86,7 +86,8 @@ public class Plataforma {
             System.out.println("1) Si" + "\n2) No");
             int aux = s.nextInt();
             if (aux == 1)
-                p.addTarjeta(bancoAsociado);
+                if(!p.addTarjeta(bancoAsociado))
+                    System.out.println("No se ha encontrado la tarjeta");
             System.out.println("Te has registrado con exito!!");
             this.addUsuario(p);
         }  else System.out.println("ERROR: ya existe un usuario registrado con ese DNI.");
