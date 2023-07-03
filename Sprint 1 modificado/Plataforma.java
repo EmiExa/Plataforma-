@@ -154,22 +154,22 @@ public class Plataforma {
         }
     }
 
-    private Pasaje generarPasaje(Viaje v) {
-    	System.out.println("GENERANDO PASAJE -");
+    private Pasaje generarPasaje(Viaje v,int nro) {
+    	System.out.println("GENERAR PASAJE #"+nro+":");
         Scanner s = new Scanner(System.in);
-        
-        System.out.println("Ingrese su dni: " +"\n");
+        System.out.print("  Ingrese DNI del pasajero: ");
         int dni = s.nextInt();
         s.nextLine();
         Usuario p = this.getUsuario(dni);
         if (p == null) {
-            System.out.print("Ingrese el nombre del pasajero: " +"\n");
+            System.out.print("  Ingrese el nombre del pasajero: ");
             String nombre = s.nextLine();
-            System.out.print("Ingrese el apellido del pasajero: " +"\n");
+            System.out.print("  Ingrese el apellido del pasajero: ");
             String apellido = s.nextLine();
             p = new Pasajero(nombre,apellido,dni,"","");
-        }
-        Pasaje pasaje = new Pasaje((Pasajero)p,v,0,v.getMonto());
+        } else System.out.println("  El DNI corresponde a un usuario registrado (los datos se autocompletan)");
+        Pasaje pasaje = new Pasaje((Pasajero) p,v,0,v.getMonto());
+        System.out.println("PASAJE #"+nro+" GENERADO EXITOSAMENTE."+"\n");
         return pasaje;
     }
 
