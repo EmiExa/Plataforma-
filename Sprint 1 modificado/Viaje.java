@@ -88,4 +88,8 @@ public class Viaje {
         return " desde "+origen+" hasta "+destino+". "+fechaSalida;
     }
 
+    public String getEmpresa() {
+		return colectivo.getEmpresa().getNombre();
+	}
+
 }
