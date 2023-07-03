@@ -218,17 +218,24 @@ public class Plataforma {
             // Gestión del pago:
             // ignoramos pago con creditos
             System.out.println("MEDIO DE PAGO: Tarjeta de credito.");
+            boolean tarjetaValida = false;
             if (comprador.getTarjeta() == null) {
             	System.out.println("Usted NO posee una tarjeta de credito asociada.");
-                comprador.addTarjeta(bancoAsociado);
-            } else System.out.println("Usted posee una tarjeta de credito asociada.");
-            if (bancoAsociado.cobrar(comprador.getTarjeta(),viaje.getMonto()*cantidad)) {
+                if (comprador.addTarjeta(bancoAsociado))
+                	tarjetaValida = true;
+            } else {
+            	System.out.println("Usted posee una tarjeta de credito asociada.");
+            	tarjetaValida = true;
+            }
+            if (!tarjetaValida)
+            	System.out.println("ERROR: la tarjeta ingresada no fue validada por el banco.\n");
+            else if (tarjetaValida && bancoAsociado.cobrar(comprador.getTarjeta(),viaje.getMonto()*cantidad)) {
                 // Enviar mail de notificiacion
                 comprador.addPasajes(pasajes);
-                System.out.println("El banco ha autorizado el pago: LA COMPRA FUE EXITOSA");
+                System.out.println("El banco ha autorizado el pago: LA COMPRA FUE EXITOSA.\n");
                 sugerirViajeImprovisado(viaje, comprador);
-            } else System.out.println("El banco NO ha autorizado el pago: LA COMPRA NO FUE EXITOSA");
-        } else System.out.println("ERROR: el viaje seleccionado no cuenta con dicha disponibilidad.");
+            } else System.out.println("El banco NO ha autorizado el pago: LA COMPRA NO FUE EXITOSA.\n");
+        } else System.out.println("ERROR: el viaje seleccionado no cuenta con dicha disponibilidad.\n");
     }
     
     public void suscribirseViaje(Pasajero p, String origen, String destino){
