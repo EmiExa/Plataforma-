@@ -6,7 +6,7 @@ public class Empresa {
     private String nombre;
     private ArrayList<Colectivo> colectivos;
     protected ArrayList<Viaje> viajesFuturos;
-    Empresa(String nombre){
+    public Empresa(String nombre){
         this.nombre = nombre;
         viajesFuturos = new ArrayList<Viaje>();
         colectivos = new ArrayList<Colectivo>();
