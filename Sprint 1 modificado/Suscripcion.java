@@ -28,12 +28,11 @@ public class Suscripcion {
     public String getOrigen(){
         return origen;
     }
-    public String getDestino(){
-        return destino;
-    }
-    public void notificar(){
+    public void notificar(Viaje v){
         for(Pasajero p:pasajeros){
-            System.out.println("Se le envía notificación a "+p.getNombre()+" "+p.getApellido());
+            System.out.println();
+            System.out.println(p.getNombre() + " le avisamos que se encuentra un viaje disponible desde "+ this.origen +" hasta "
+                    + this.destino + " con un valor de: " + (v.getMonto() - v.getMonto() * v.getDescuentoEmpresa()));
             //para cada pasajero se le envia un mail con el viaje en descuento
         }
     }
