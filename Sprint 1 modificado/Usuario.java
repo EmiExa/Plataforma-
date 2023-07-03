@@ -18,4 +18,5 @@ public abstract class Usuario {
     public int getDni(){
         return dni;
     }
+    public abstract String getClave();
 }
