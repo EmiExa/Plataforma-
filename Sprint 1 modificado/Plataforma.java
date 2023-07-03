@@ -22,7 +22,7 @@ public class Plataforma {
         bancoAsociado = banco;
     }
 
-    private Usuario existeUsuario(int dni) {
+    private Usuario getUsuario(int dni) {
     	for (Usuario u: usuarios)
     		if (u.getDni()==dni)
     			return u;
@@ -34,7 +34,7 @@ public class Plataforma {
         System.out.println("Ingresar DNI: "); int dni = s.nextInt();
         s.nextLine(); //descarta el salto de linea genereado por nextint
         System.out.println("Ingresar clave: "); String clave = s.nextLine();
-        Usuario u = existeUsuario(dni);
+        Usuario u = getUsuario(dni);
         if (u!=null) {
             if ((u.getClave().equals(clave)))
                 System.out.println("Has ingresado correctamente a Plataforma 9 3/4");
