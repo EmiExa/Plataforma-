@@ -18,7 +18,6 @@ public class Viaje {
         this.cantAsientosDisponibles = this.colectivo.getAsientos();
         this.fechaSalida = fechaSalida;
         this.monto = monto;
-        this.horasRestantes = 1;
     }
 
     public boolean esImprovisado(int horasRestantes, int lugares) {
