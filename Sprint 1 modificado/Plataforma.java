@@ -66,7 +66,7 @@ public class Plataforma {
         s.nextLine(); //descarta el salto de linea genereado por nextint
         System.out.println("Ingresar Email: "); String email = s.nextLine();
         System.out.println("Ingresar clave: "); String clave = s.nextLine();
-        if (buscaPasajero(dni) == null){
+        if (getUsuario(dni) == null){
             Pasajero p = new Pasajero(nombre,apellido,dni,email,clave);
             System.out.println("Quiere asociar una tarjeta de credito?");
             System.out.println("1) Si" + "\n2) No");
