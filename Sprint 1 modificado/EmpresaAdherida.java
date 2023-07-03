@@ -15,7 +15,6 @@ public class EmpresaAdherida extends Empresa{
         for(int i= 0; i < viajesFuturos.size(); i++) {
             Viaje viaje = viajesFuturos.get(i);
             if (viaje.esImprovisado(horasRestantes,lugaresDisponibles)) {
-                System.out.println("Agregando viaje improvisado");
                 viaje.setMonto(viaje.getMonto() - viaje.getMonto() * descuento);
                 viajesimprovisados.add(viaje);
             }
