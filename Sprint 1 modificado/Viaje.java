@@ -84,6 +84,11 @@ public class Viaje {
         return  this.cantAsientosDisponibles >= cantidad;
     }
 
+
+	public String getInfo() {
+		return " desde "+origen+" hasta "+destino+". "+fechaSalida;	
+	}
+
     public String getEmpresa() {
 		return colectivo.getEmpresa().getNombre();
 	}
