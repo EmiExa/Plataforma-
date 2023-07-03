@@ -49,16 +49,8 @@ public class Plataforma {
     public void darBajaEmpresa(Empresa empresa){
         //Buscamos en ambas listas Empresa o en empresa adherida en caso de que este en alguna de las 2 las damos de baja.
     }
-    public Usuario buscaPasajero(int dni){  // buscar usuario cambiar nombre
-        for (int i = 0; i < usuarios.size(); i++) {
-            Usuario p = usuarios.get(i);
-            if (p.getDni() == dni)
-                return p;
-        }
-        return null;
-    }
 
-        public String crearClave(){
+    public String crearClave(){
         Scanner s = new Scanner(System.in);
         String clave = "a";
         boolean valida = false;
@@ -285,8 +277,12 @@ public class Plataforma {
             if ((origen.equals(suscActual.getOrigen()))&&(destino.equals(suscActual.getDestino()))){
                 suscActual.eliminarPasajero(p);
                 encontrado = true;
+                System.out.println("Se dio de baja correctamente");
             }
             i++;
         }
+        if(encontrado == false)
+            System.out.println("Usted no se encuentra suscripto a este viaje");
+
     }
 }
