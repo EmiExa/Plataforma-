@@ -33,7 +33,7 @@ public class Suscripcion {
     }
     public void notificar(){
         for(Pasajero p:pasajeros){
-            System.out.println(p.getNombre());
+            System.out.println("Se le envía notificación a "+p.getNombre()+" "+p.getApellido());
             //para cada pasajero se le envia un mail con el viaje en descuento
         }
     }
