@@ -168,7 +168,7 @@ public class Plataforma {
     public void sugerirViajeImprovisado(Viaje viaje, Pasajero comprador) {
         Scanner s = new Scanner(System.in);
         Suscripcion sus = existeSuscripcion(viaje);
-        if ((comprador.cantViajes(viaje.getOrigen(),viaje.getDestino()) >= 3) && (!sus.existePasajero(comprador))) {
+        if ((comprador.cantViajes(viaje.getOrigen(),viaje.getDestino()) >= 3) && ((sus==null) || (sus!=null && !sus.existePasajero(comprador)))) {
             System.out.println(" Notamos que realiza este viaje con frecuencia.\n¿Desea suscribirse al servicio de viaje improvisado para esta ruta?");
             System.out.print(" Ingresar 1 (si) o 0 (no): ");
             if (s.nextInt()==1)
