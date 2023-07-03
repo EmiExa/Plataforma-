@@ -4,7 +4,7 @@ public class Tarjeta {
     private String marca;
     public Tarjeta(int num, Banco banco, String marc){
         numero = num;
-        banco = banco;
+        bancoEmisor = banco;
         marca = marc;
     }
     public int getNum(){
