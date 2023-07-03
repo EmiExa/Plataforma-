@@ -6,13 +6,12 @@ public class Viaje {
     private String origen;
     private String destino;
     private int cantAsientosDisponibles;
-    private int horasRestantes;
     private Colectivo colectivo;
     private LocalDateTime fechaSalida;
-    private Double monto;
+    private double monto;
 
-    public Viaje(String origen, String destino, Colectivo colectivo, LocalDateTime fechaSalida, Double monto) { //estabamos un toq complicados con el tema del Localdate
-        this.origen = origen;                                                                                                                               //entonces hicimos el horas restantes para parchearlo
+    public Viaje(String origen, String destino, Colectivo colectivo, LocalDateTime fechaSalida, double monto) { 
+        this.origen = origen;                                                                                                                               
         this.destino = destino;
         this.colectivo = colectivo;
         this.cantAsientosDisponibles = this.colectivo.getAsientos();
