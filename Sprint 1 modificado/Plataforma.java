@@ -192,20 +192,23 @@ public class Plataforma {
             ArrayList<Pasaje> pasajes = new ArrayList<>();
             for (int i = 0; i < cantidad; i++)
                 pasajes.add(generarPasaje(viaje,i+1));
-            viaje.setCantAsientosDisponibles(cantidad);
+            viaje.decrementarAsientosDisponibles(cantidad);
             // Gestión del pago:
             // ignoramos pago con creditos
-            if (comprador.getTarjeta() == null)
+            System.out.println("MEDIO DE PAGO: Tarjeta de credito.");
+            if (comprador.getTarjeta() == null) {
+            	System.out.println("Usted NO posee una tarjeta de credito asociada.");
                 comprador.addTarjeta(bancoAsociado);
+            } else System.out.println("Usted posee una tarjeta de credito asociada.");
             if (bancoAsociado.cobrar(comprador.getTarjeta(),viaje.getMonto()*cantidad)) {
                 // Enviar mail de notificiacion
                 comprador.addPasajes(pasajes);
-                System.out.println("LA COMPRA FUE EXITOSA");
+                System.out.println("El banco ha autorizado el pago: LA COMPRA FUE EXITOSA");
                 sugerirViajeImprovisado(viaje, comprador);
-            }
-            else System.out.println("LA COMPRA NO FUE EXITOSA");
-        }  else System.out.println("ERROR: el viaje seleccionado no cuenta con dicha disponibilidad.");
+            } else System.out.println("El banco NO ha autorizado el pago: LA COMPRA NO FUE EXITOSA");
+        } else System.out.println("ERROR: el viaje seleccionado no cuenta con dicha disponibilidad.");
     }
+    
     public void suscribirseViaje(Pasajero p, String origen, String destino){
         int i = 0;
         boolean encontrado = false;
