@@ -14,8 +14,10 @@ public class Empresa {
     public void addViaje(Viaje viaje){
         viajesFuturos.add(viaje);
     }
-    public ArrayList<Viaje> getViajes(){
-        return viajesFuturos;
+    public ArrayList<Viaje> getViajes(){  //fix
+        ArrayList<Viaje> viajes = new ArrayList<>();
+        viajes.addAll(viajesFuturos);
+        return viajes;
     }
 
     public void addColectivo(Colectivo cole){
@@ -25,6 +27,7 @@ public class Empresa {
         return colectivos.size();
     }
     public ArrayList<Viaje>  buscarPasajes(LocalDate dia, String origen, String destino){
+
         ArrayList<Viaje> salida = new ArrayList<>();
         for(int i =0; i< viajesFuturos.size();i++){
             Viaje viajeactual= viajesFuturos.get(i);
@@ -32,12 +35,7 @@ public class Empresa {
                 salida.add(viajeactual);
             }
         }
-        if (salida.size()>0){
             return salida;
-        }
-        else {
-            return null;
-        }
     }
     public String getNombre() {
         return nombre;
