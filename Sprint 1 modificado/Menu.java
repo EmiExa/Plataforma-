@@ -54,6 +54,7 @@ public class Menu {
         p.addUsuario(lu);
         p.addUsuario(vico);
         p.addUsuario(del);
+        //p.addUsuario(admin); si queres probar el ingreso con admin
 
         //SE AGREGAN LAS EMPRESAS A LA PLATAFORMA
         admin.addConvenio(e1, p);
@@ -147,39 +148,40 @@ public class Menu {
             Usuario admin = plat.login();
             if (admin != null){
                 ingreso = true;
-                while (opcion != 3)
-                System.out.println("MENU ADMINISTRADOR: ");
-                System.out.println("1.Agregar convenio"+ "\n 2.Ver estadisticas" +"\n 3.Salir");
-                System.out.println("Ingrese el numero de opcion que desea realizar:");
-                opcion = s.nextInt();
-                s.nextLine();
-                if (opcion == 1){
-                    //Agregar convenio
-                    String nombre = s.nextLine();
-
-                    int opc = 0;
-                    while ((opc != 1) && (opc != 2)){
-                        System.out.println("Desea que su empresa esta adherida? 1.SI 2.NO");
-                        opc = s.nextInt();
-                        s.nextLine();
-                        if (opc == 1) {
-                            EmpresaAdherida emp = new EmpresaAdherida(nombre, 0.7, 4, 6);
-                            ((Administrador) admin).addConvenioAdherido(emp, plat);
+                while (opcion != 3){
+                    System.out.println("MENU ADMINISTRADOR: ");
+                    System.out.println("1.Agregar convenio"+ "\n 2.Ver estadisticas" +"\n 3.Salir");
+                    System.out.println("Ingrese el numero de opcion que desea realizar:");
+                    opcion = s.nextInt();
+                    s.nextLine();
+                    if (opcion == 1){
+                        //Agregar convenio
+                        String nombre = s.nextLine();
+    
+                        int opc = 0;
+                        while ((opc != 1) && (opc != 2)){
+                            System.out.println("Desea que su empresa esta adherida? 1.SI 2.NO");
+                            opc = s.nextInt();
+                            s.nextLine();
+                            if (opc == 1) {
+                                EmpresaAdherida emp = new EmpresaAdherida(nombre, 0.7, 4, 6);
+                                ((Administrador) admin).addConvenioAdherido(emp, plat);
+                            }
+                            else if (opc == 2) {
+                                Empresa empa = new Empresa(nombre);
+                                ((Administrador) admin).addConvenio(empa, plat);
+                            }
+                            if ((opc != 1) && (opc != 2))
+                                System.out.println("La opcion ingresada no es correcta vuelva a intentar");
                         }
-                        else if (opc == 2) {
-                            Empresa empa = new Empresa(nombre);
-                            ((Administrador) admin).addConvenio(empa, plat);
-                        }
-                        if ((opc != 1) && (opc != 2))
-                            System.out.println("La opcion ingresada no es correcta vuelva a intentar");
                     }
-                }
-                if (opcion == 2){
-                    //Ver Estadisticas
-                    //Queda a implementar
-                }
-                if (opcion != 3){
-                    System.out.println("La opcion ingresada es incorrecta vuelva a intentar");
+                    if (opcion == 2){
+                        //Ver Estadisticas
+                        //Queda a implementar
+                    }
+                    if (opcion != 3){
+                        System.out.println("La opcion ingresada es incorrecta vuelva a intentar");
+                    }
                 }
             } else 
                 System.out.println("El usuario ingresado es incorrecto vuelva a intentar");
