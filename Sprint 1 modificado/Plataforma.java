@@ -111,14 +111,15 @@ public class Plataforma {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.parse(dateString, formatter);
         System.out.println(localDate);
-
         ArrayList<Viaje> salida = new ArrayList<>();
         for (int i = 0; i < empresas.size(); i++) {
-            ArrayList<Viaje> viajes = empresas.get(i).buscarPasajes(localDate, origen, destino);
-            if (viajes != null) {
+            ArrayList<Viaje> viajes = new ArrayList<>();
+            viajes.addAll(empresas.get(i).buscarPasajes(localDate, origen, destino));
+            if (viajes.size()>0) {
                 salida.addAll(viajes);
             }
         }
+
         System.out.println("Viajes disponibles de "+origen.toUpperCase()+" a "+destino.toUpperCase()+":");
         listarServicios(salida);
         return salida;
